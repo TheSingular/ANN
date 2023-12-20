@@ -32,6 +32,15 @@
     <ClInclude Include="Process.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="ANN.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="FCLayer.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ANNSetup.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CppCLR_WinformsProjekt.cpp">
@@ -47,6 +56,15 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Process.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ANN.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="FCLayer.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ANNSetup.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

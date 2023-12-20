@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "Process.h"
 #include <iostream>
 #include <fstream>
@@ -15,7 +15,7 @@ namespace CppCLRWinformsProjekt {
 	using namespace System::IO;
 
 	/// <summary>
-	/// Zusammenfassung für Form1
+	/// Zusammenfassung fÃ¼r Form1
 	/// </summary>
 	public ref class Form1 : public System::Windows::Forms::Form
 	{
@@ -24,7 +24,7 @@ namespace CppCLRWinformsProjekt {
 		{
 			InitializeComponent();
 			//
-			//TODO: Konstruktorcode hier hinzufügen.
+			//TODO: Konstruktorcode hier hinzufÃ¼gen.
 			//
 		}
 
@@ -75,8 +75,8 @@ namespace CppCLRWinformsProjekt {
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Erforderliche Methode für die Designerunterstützung.
-		/// Der Inhalt der Methode darf nicht mit dem Code-Editor geändert werden.
+		/// Erforderliche Methode fÃ¼r die DesignerunterstÃ¼tzung.
+		/// Der Inhalt der Methode darf nicht mit dem Code-Editor geÃ¤ndert werden.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -108,9 +108,10 @@ namespace CppCLRWinformsProjekt {
 			// pictureBox1
 			// 
 			this->pictureBox1->BackColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->pictureBox1->Location = System::Drawing::Point(13, 35);
+			this->pictureBox1->Location = System::Drawing::Point(20, 54);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(802, 578);
+			this->pictureBox1->Size = System::Drawing::Size(1203, 889);
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Form1::pictureBox1_Paint);
@@ -123,18 +124,21 @@ namespace CppCLRWinformsProjekt {
 			this->groupBox1->Controls->Add(this->ClassCountBox);
 			this->groupBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(162)));
-			this->groupBox1->Location = System::Drawing::Point(869, 50);
+			this->groupBox1->Location = System::Drawing::Point(1304, 77);
+			this->groupBox1->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(200, 100);
+			this->groupBox1->Padding = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->groupBox1->Size = System::Drawing::Size(300, 154);
 			this->groupBox1->TabIndex = 1;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Network Architecture";
 			// 
 			// Set_Net
 			// 
-			this->Set_Net->Location = System::Drawing::Point(10, 61);
+			this->Set_Net->Location = System::Drawing::Point(15, 94);
+			this->Set_Net->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->Set_Net->Name = L"Set_Net";
-			this->Set_Net->Size = System::Drawing::Size(131, 33);
+			this->Set_Net->Size = System::Drawing::Size(196, 51);
 			this->Set_Net->TabIndex = 2;
 			this->Set_Net->Text = L"Network Setting";
 			this->Set_Net->UseVisualStyleBackColor = true;
@@ -143,19 +147,21 @@ namespace CppCLRWinformsProjekt {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(108, 23);
+			this->label1->Location = System::Drawing::Point(162, 35);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(69, 13);
+			this->label1->Size = System::Drawing::Size(104, 20);
 			this->label1->TabIndex = 1;
-			this->label1->Text = L"Sýnýf Sayýsý";
+			this->label1->Text = L"SÄ±nÄ±f SayÄ±sÄ±";
 			// 
 			// ClassCountBox
 			// 
 			this->ClassCountBox->FormattingEnabled = true;
 			this->ClassCountBox->Items->AddRange(gcnew cli::array< System::Object^  >(6) { L"2", L"3", L"4", L"5", L"6", L"7" });
-			this->ClassCountBox->Location = System::Drawing::Point(10, 20);
+			this->ClassCountBox->Location = System::Drawing::Point(15, 31);
+			this->ClassCountBox->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->ClassCountBox->Name = L"ClassCountBox";
-			this->ClassCountBox->Size = System::Drawing::Size(82, 21);
+			this->ClassCountBox->Size = System::Drawing::Size(121, 28);
 			this->ClassCountBox->TabIndex = 0;
 			this->ClassCountBox->Text = L"2";
 			// 
@@ -165,9 +171,11 @@ namespace CppCLRWinformsProjekt {
 			this->groupBox2->Controls->Add(this->ClassNoBox);
 			this->groupBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(162)));
-			this->groupBox2->Location = System::Drawing::Point(879, 191);
+			this->groupBox2->Location = System::Drawing::Point(1318, 294);
+			this->groupBox2->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->groupBox2->Name = L"groupBox2";
-			this->groupBox2->Size = System::Drawing::Size(190, 61);
+			this->groupBox2->Padding = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->groupBox2->Size = System::Drawing::Size(285, 94);
 			this->groupBox2->TabIndex = 2;
 			this->groupBox2->TabStop = false;
 			this->groupBox2->Text = L"Data Collection";
@@ -175,11 +183,12 @@ namespace CppCLRWinformsProjekt {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(98, 23);
+			this->label2->Location = System::Drawing::Point(147, 35);
+			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(81, 13);
+			this->label2->Size = System::Drawing::Size(118, 20);
 			this->label2->TabIndex = 1;
-			this->label2->Text = L"Örnek Etiketi";
+			this->label2->Text = L"Ã–rnek Etiketi";
 			// 
 			// ClassNoBox
 			// 
@@ -188,30 +197,34 @@ namespace CppCLRWinformsProjekt {
 				L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8",
 					L"9"
 			});
-			this->ClassNoBox->Location = System::Drawing::Point(7, 20);
+			this->ClassNoBox->Location = System::Drawing::Point(10, 31);
+			this->ClassNoBox->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->ClassNoBox->Name = L"ClassNoBox";
-			this->ClassNoBox->Size = System::Drawing::Size(75, 21);
+			this->ClassNoBox->Size = System::Drawing::Size(110, 28);
 			this->ClassNoBox->TabIndex = 0;
 			this->ClassNoBox->Text = L"1";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(876, 265);
+			this->label3->Location = System::Drawing::Point(1314, 408);
+			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(35, 13);
+			this->label3->Size = System::Drawing::Size(51, 20);
 			this->label3->TabIndex = 3;
 			this->label3->Text = L"label3";
 			// 
 			// menuStrip1
 			// 
+			this->menuStrip1->GripMargin = System::Windows::Forms::Padding(2, 2, 0, 2);
+			this->menuStrip1->ImageScalingSize = System::Drawing::Size(24, 24);
 			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
 				this->fileToolStripMenuItem,
 					this->processToolStripMenuItem
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(1463, 24);
+			this->menuStrip1->Size = System::Drawing::Size(2194, 35);
 			this->menuStrip1->TabIndex = 4;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -222,20 +235,20 @@ namespace CppCLRWinformsProjekt {
 					this->saveDataToolStripMenuItem
 			});
 			this->fileToolStripMenuItem->Name = L"fileToolStripMenuItem";
-			this->fileToolStripMenuItem->Size = System::Drawing::Size(37, 20);
+			this->fileToolStripMenuItem->Size = System::Drawing::Size(54, 29);
 			this->fileToolStripMenuItem->Text = L"File";
 			// 
 			// readDataToolStripMenuItem
 			// 
 			this->readDataToolStripMenuItem->Name = L"readDataToolStripMenuItem";
-			this->readDataToolStripMenuItem->Size = System::Drawing::Size(129, 22);
+			this->readDataToolStripMenuItem->Size = System::Drawing::Size(197, 34);
 			this->readDataToolStripMenuItem->Text = L"Read_Data";
 			this->readDataToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::readDataToolStripMenuItem_Click);
 			// 
 			// saveDataToolStripMenuItem
 			// 
 			this->saveDataToolStripMenuItem->Name = L"saveDataToolStripMenuItem";
-			this->saveDataToolStripMenuItem->Size = System::Drawing::Size(129, 22);
+			this->saveDataToolStripMenuItem->Size = System::Drawing::Size(197, 34);
 			this->saveDataToolStripMenuItem->Text = L"Save_Data";
 			this->saveDataToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::saveDataToolStripMenuItem_Click);
 			// 
@@ -246,19 +259,19 @@ namespace CppCLRWinformsProjekt {
 					this->testingToolStripMenuItem
 			});
 			this->processToolStripMenuItem->Name = L"processToolStripMenuItem";
-			this->processToolStripMenuItem->Size = System::Drawing::Size(59, 20);
+			this->processToolStripMenuItem->Size = System::Drawing::Size(88, 29);
 			this->processToolStripMenuItem->Text = L"Process";
 			// 
 			// trainingToolStripMenuItem
 			// 
 			this->trainingToolStripMenuItem->Name = L"trainingToolStripMenuItem";
-			this->trainingToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->trainingToolStripMenuItem->Size = System::Drawing::Size(175, 34);
 			this->trainingToolStripMenuItem->Text = L"Training";
 			// 
 			// testingToolStripMenuItem
 			// 
 			this->testingToolStripMenuItem->Name = L"testingToolStripMenuItem";
-			this->testingToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->testingToolStripMenuItem->Size = System::Drawing::Size(175, 34);
 			this->testingToolStripMenuItem->Text = L"Testing";
 			this->testingToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::testingToolStripMenuItem_Click);
 			// 
@@ -268,17 +281,18 @@ namespace CppCLRWinformsProjekt {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(869, 299);
+			this->textBox1->Location = System::Drawing::Point(1304, 460);
+			this->textBox1->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->textBox1->Multiline = true;
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(247, 283);
+			this->textBox1->Size = System::Drawing::Size(368, 433);
 			this->textBox1->TabIndex = 5;
 			// 
 			// Form1
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1463, 633);
+			this->ClientSize = System::Drawing::Size(2194, 974);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->groupBox2);
@@ -286,6 +300,7 @@ namespace CppCLRWinformsProjekt {
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
+			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->Name = L"Form1";
 			this->Text = L"Form1";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
@@ -328,8 +343,8 @@ namespace CppCLRWinformsProjekt {
 				if (numLabel > class_count)
 					MessageBox::Show("The class label cannot be greater than the maximum number of classes.");
 				else {
-					label = numLabel - 1; //Dögüler 0 dan baþladýðýndan, label deðeri 0 dan baþlamasý için bir eksiði alýnmýþtýr
-					if (numSample == 0) { //Dinamik alýnan ilk örnek için sadece
+					label = numLabel - 1; //DÃ¶ngÃ¼ler 0 dan baÅŸladÄ±ÄŸÄ±ndan, label deÄŸeri 0 dan baÅŸlamasÄ± iÃ§in bir eksiÄŸi alÄ±nmÄ±ÅŸtÄ±r
+					if (numSample == 0) { //Dinamik alÄ±nan ilk Ã¶rnek iÃ§in sadece
 						numSample = 1;  
 						Samples = new float[numSample * inputDim]; targets = new float[numSample];
 						for (int i = 0; i < inputDim; i++)
@@ -348,7 +363,7 @@ namespace CppCLRWinformsProjekt {
 			}//else
 	    }//pictureMouseClick
         private: System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-			//Ana eksen doðrularini cizdir
+			//Ana eksen doÃ°rularini cizdir
 			Pen^ pen = gcnew Pen(Color::Black, 3.0f);
 			int center_width, center_height;
 			center_width = (int)(pictureBox1->Width / 2);
@@ -375,8 +390,8 @@ namespace CppCLRWinformsProjekt {
         }//Set_Net
         private: System::Void readDataToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 			char** c = new char *[2];
-			// Veri Kümesini okunacak 
-			MessageBox::Show("Veri Kümesini Yükleyin");
+			// Veri KÃ¼mesini okunacak 
+			MessageBox::Show("Veri KÃ¼mesini YÃ¼kleyin");
 			c[0] = "../Data/Samples.txt";
 			c[1] = "../Data/weights.txt";
 			std::ifstream file;
@@ -395,7 +410,7 @@ namespace CppCLRWinformsProjekt {
 				float* x = new float[inputDim];
 				while (!file.eof())
 				{
-					if (numSample == 0) { //ilk örnek için sadece
+					if (numSample == 0) { //ilk Ã¶rnek iÃ§in sadece
 						numSample = 1;
 						Samples = new float[inputDim]; targets = new float[numSample];
 						for (int i = 0; i < inputDim; i++)
@@ -452,7 +467,7 @@ namespace CppCLRWinformsProjekt {
         private: System::Void saveDataToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 			if (numSample != 0) {
 				char** c = new char* [2];
-				// Veri Kümesi yazýlacak
+				// Veri KÃ¼mesi yazÃ½lacak
 				c[0] = "../Data/Samples.txt";
 				c[1] = "../Data/weights.txt";
 				std::ofstream ofs(c[0]);
@@ -487,7 +502,7 @@ namespace CppCLRWinformsProjekt {
 			float* x = new float[2];
 			float* mean = new float[2];
 			float* std = new float[2];
-			//mean ve std tekrar hesaplanýyor, Aslýnda eðitimde bunlar saklanmalý oradan alýnmalý
+			//mean ve std tekrar hesaplanÃ½yor, AslÃ½nda eÃ°itimde bunlar saklanmalÃ½ oradan alÃ½nmalÃ½
 			Z_Score_Parameters(Samples, numSample, inputDim, mean, std);
 			//MessageBox::Show("mean: "+System::Convert::ToString(mean[0])+ " "+ System::Convert::ToString(mean[1]));
 			int num, temp_x, temp_y;
@@ -503,11 +518,18 @@ namespace CppCLRWinformsProjekt {
 					num = Test_Forward(x, Weights, bias, class_count, inputDim);
 					//MessageBox::Show("merhaba: class :" + System::Convert::ToString(numClass));
 					switch (num) {
-					case 0: c = Color::FromArgb(0, 0, 0); break;
-					case 1: c = Color::FromArgb(255, 0, 0); break;
-					case 2: c = Color::FromArgb(0, 255, 0); break;
-					case 3: c = Color::FromArgb(0, 0, 255); break;
-					default: c = Color::FromArgb(0, 255, 255);
+					//case 0: c = Color::FromArgb(0, 0, 0); break;
+					//case 1: c = Color::FromArgb(255, 0, 0); break;
+					//case 2: c = Color::FromArgb(0, 255, 0); break;
+					//case 3: c = Color::FromArgb(0, 0, 255); break;
+					//default: c = Color::FromArgb(0, 255, 255);
+					case 0: c = Color::Black; break;
+					case 1: c = Color::Red; break;
+					case 2: c = Color::Blue; break;
+					case 3: c = Color::Green; break;
+					case 4: c = Color::Yellow; break;
+					case 5: c = Color::Orange; break;
+					default: c = Color::YellowGreen;
 					}//switch
 					surface->SetPixel(column, row, c);
 				}//column
@@ -515,7 +537,7 @@ namespace CppCLRWinformsProjekt {
 			}
 			//Samples Draw
 			Pen^ pen;// = gcnew Pen(Color::Black, 3.0f);
-			MessageBox::Show("Örnekler cizilecek");
+			MessageBox::Show("Ã–rnekler cizilecek");
 			for (int i = 0; i < numSample; i++) {
 				switch (int(targets[i])) {
 				case 0: pen = gcnew Pen(Color::Black, 3.0f); break;
