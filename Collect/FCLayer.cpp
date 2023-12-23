@@ -1,11 +1,10 @@
 #include "pch.h"
 #include "FCLayer.h"
-#include <memory>
 using namespace System;
 
 double inline sigmoid(double x)
 {
-	return 2 / (1 + exp(-x)) - 1;
+	return 2 / (1 + Math::Exp(-x)) - 1;
 }
 double inline sigmoidDerivative(double x)
 {

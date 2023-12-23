@@ -1,6 +1,8 @@
 #pragma once
+#include "ANN.h"
+#include "FCLayer.h"
 
-namespace Collect {
+namespace CppCLRWinformsProjekt {
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -23,6 +25,15 @@ namespace Collect {
 			//
 		}
 
+		ANNSetup(ANN^ ann)
+		{
+			InitializeComponent();
+			//
+			//TODO: Add the constructor code here
+			//
+			this->ann = ann;
+		}
+
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -33,6 +44,17 @@ namespace Collect {
 			{
 				delete components;
 			}
+
+			//Reset weights and biases if structure changed
+			if (changed)
+			{
+				FCLayer^ iterator = ann->InputLayer;
+				while (iterator != nullptr)
+				{
+					iterator->initializeNeurons();
+					iterator = iterator->NextLayer;
+				}
+			}
 		}
 
 	private:
@@ -40,6 +62,15 @@ namespace Collect {
 		/// Required designer variable.
 		/// </summary>
 		System::ComponentModel::Container ^components;
+
+
+		/// <summary>
+		/// User defined variables.
+		/// </summary>
+		ANN^ ann;
+		int inputDim = 2;
+		bool changed = false;
+		
 
 #pragma region Windows Form Designer generated code
 		/// <summary>

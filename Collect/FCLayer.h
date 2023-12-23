@@ -44,9 +44,11 @@ public:
 		void set(FCLayer^ value) {
 			nextLayer = value;
 			if (nextLayer != nullptr)
+			{
 				nextLayer->prevLayer = this;
-			//nextLayer's numInputDim is tied to numNeurons
-			nextLayer->updateNumInputDim();
+				//nextLayer's numInputDim is tied to numNeurons
+				nextLayer->updateNumInputDim();
+			}
 		}
 	}
 	//read-write
@@ -76,6 +78,7 @@ public:
 	array<double>^ predict(array<double>^ inputs);
 	array<double>^ calculateOutputs();
 	void updateWeights(array<double>^ nextDelta);
+	void initializeNeurons();
 
 private:
 	int numNeurons = 1;
@@ -86,6 +89,5 @@ private:
 	array<double>^ bias;
 	array<double>^ inputs;
 	array<double>^ outputs;
-	void initializeNeurons();
 	void updateNumInputDim();
 };

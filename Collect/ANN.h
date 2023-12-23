@@ -33,6 +33,7 @@ public:
 		}
 		void set(int value) {
 			maxEpochs = value;
+			Array::Resize(errorLog, maxEpochs);
 		}
 	}
 	// read-only
@@ -51,6 +52,18 @@ public:
 		}
 	}
 	// read-only
+	property array<double>^ Mean {
+		array<double>^ get() {
+			return mean;
+		}
+	}
+	// read-only
+	property array<double>^ Std {
+		array<double>^ get() {
+			return std;
+		}
+	}
+	// read-only
 	property FCLayer^ OutputLayer {
 		FCLayer^ get() {
 			return outputLayer;
@@ -62,15 +75,25 @@ public:
 			return inputLayer;
 		}
 	}
-	// read-write
-	property List<FCLayer^>^ HiddenLayers {
-		List<FCLayer^>^ get() {
-			return hiddenLayers;
-		}
-		void set(List<FCLayer^>^ value) {
-			hiddenLayers = value;
+	// read-only
+	property array<array<double>^>^ RawInput {
+		array<array<double>^>^ get() {
+			return rawInput;
 		}
 	}
+	// read-only
+	property array<int>^ Target {
+		array<int>^ get() {
+			return target;
+		}
+	}
+	// read-only
+	property bool Initialized {
+		bool get() {
+			return initialized;
+		}
+	}
+
 
 	// Constructor & Destructor
 	ANN();
@@ -78,30 +101,40 @@ public:
 
 	// Methods
 
-	//// insert a layer at index, bounded by 0 and hiddenLayers->Count. If index is hiddenLayers->Count, then it will be added to the end of the list
-	//void insertLayerAt(int index, int numNeurons);
-	//// update a layer at index, bounded by 0 and hiddenLayers->Count -1
-	//void updateLayerAt(int index, int numNeurons);
-	//// remove a layer at index, bounded by 0 and hiddenLayers->Count -1
-	//void removeLayerAt(int index);
+// insert a layer before the layer specified by next
+	void insertLayerBefore(FCLayer^ next, int numNeurons);
+	// update a layer's number of neurons
+	void updateLayer(FCLayer^ layer, int numNeurons);
+	// remove a layer and link the previous layer to the next layer
+	void removeLayer(FCLayer^ layer);
 
-	void Train(array<array<double>^>^ input, array<double>^ target);
-	array<double>^ predict(array<double>^ input);
+	void Train();
+	int predictRaw(array<double>^ rawTestSample);
+	int classResult(array<double>^ output);
+	void loadFromFile(int^ width, int^ height);
+	void saveToFile(int width, int height);
+	void addSample(array<double>^ input, int target);
+	void prepInput();
+	void pickNumClass(int numClass);
 
-	void loadFromFile(String^ filename);
-	void saveToFile(String^ filename);
-	
 
 private:
+	bool initialized = false;
 	int epochs = 0;
 	int maxEpochs = 1000;
+	array<double>^ errorLog = gcnew array<double>(maxEpochs);
 	int batchSize = 1;
-	double error = 0;
+	double error = 1;
 	double threshold = 0.1;
-	FCLayer^ inputLayer;
+	array<double>^ mean = gcnew array<double>(2);
+	array<double>^ std = gcnew array<double>(2);
 	FCLayer^ outputLayer;
-	List<FCLayer^>^ hiddenLayers;
+	FCLayer^ inputLayer;
+	array<array<double>^>^ input;
+	array<array<double>^>^ rawInput;
+	array<int>^ target;
 	//Reset everything, remove all layers
 	void clearall();
+	int predict(array<double>^ testSample);
 };
 
