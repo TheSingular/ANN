@@ -143,7 +143,7 @@ namespace CppCLRWinformsProjekt {
 				   static_cast<System::Byte>(162)));
 			   this->groupBox1->Location = System::Drawing::Point(869, 50);
 			   this->groupBox1->Name = L"groupBox1";
-			   this->groupBox1->Size = System::Drawing::Size(305, 126);
+			   this->groupBox1->Size = System::Drawing::Size(349, 130);
 			   this->groupBox1->TabIndex = 1;
 			   this->groupBox1->TabStop = false;
 			   this->groupBox1->Text = L"Network Architecture";
@@ -160,7 +160,7 @@ namespace CppCLRWinformsProjekt {
 			   // 
 			   // Reset_Net
 			   // 
-			   this->Reset_Net->Location = System::Drawing::Point(183, 13);
+			   this->Reset_Net->Location = System::Drawing::Point(226, 13);
 			   this->Reset_Net->Name = L"Reset_Net";
 			   this->Reset_Net->Size = System::Drawing::Size(116, 42);
 			   this->Reset_Net->TabIndex = 3;
@@ -180,7 +180,7 @@ namespace CppCLRWinformsProjekt {
 			   // 
 			   // Set_Net
 			   // 
-			   this->Set_Net->Location = System::Drawing::Point(183, 61);
+			   this->Set_Net->Location = System::Drawing::Point(226, 61);
 			   this->Set_Net->Name = L"Set_Net";
 			   this->Set_Net->Size = System::Drawing::Size(116, 59);
 			   this->Set_Net->TabIndex = 2;
@@ -193,9 +193,9 @@ namespace CppCLRWinformsProjekt {
 			   this->label1->AutoSize = true;
 			   this->label1->Location = System::Drawing::Point(108, 23);
 			   this->label1->Name = L"label1";
-			   this->label1->Size = System::Drawing::Size(69, 13);
+			   this->label1->Size = System::Drawing::Size(112, 13);
 			   this->label1->TabIndex = 1;
-			   this->label1->Text = L"Sınıf Sayısı";
+			   this->label1->Text = L"Number of Classes";
 			   // 
 			   // groupBox2
 			   // 
@@ -205,7 +205,7 @@ namespace CppCLRWinformsProjekt {
 				   static_cast<System::Byte>(162)));
 			   this->groupBox2->Location = System::Drawing::Point(879, 191);
 			   this->groupBox2->Name = L"groupBox2";
-			   this->groupBox2->Size = System::Drawing::Size(190, 61);
+			   this->groupBox2->Size = System::Drawing::Size(210, 49);
 			   this->groupBox2->TabIndex = 2;
 			   this->groupBox2->TabStop = false;
 			   this->groupBox2->Text = L"Data Collection";
@@ -225,9 +225,9 @@ namespace CppCLRWinformsProjekt {
 			   this->label2->AutoSize = true;
 			   this->label2->Location = System::Drawing::Point(98, 23);
 			   this->label2->Name = L"label2";
-			   this->label2->Size = System::Drawing::Size(81, 13);
+			   this->label2->Size = System::Drawing::Size(98, 13);
 			   this->label2->TabIndex = 1;
-			   this->label2->Text = L"Örnek Etiketi";
+			   this->label2->Text = L"Label of Sample";
 			   // 
 			   // menuStrip1
 			   // 
@@ -256,15 +256,15 @@ namespace CppCLRWinformsProjekt {
 			   // readDataToolStripMenuItem
 			   // 
 			   this->readDataToolStripMenuItem->Name = L"readDataToolStripMenuItem";
-			   this->readDataToolStripMenuItem->Size = System::Drawing::Size(129, 22);
-			   this->readDataToolStripMenuItem->Text = L"Read_Data";
+			   this->readDataToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			   this->readDataToolStripMenuItem->Text = L"Read data";
 			   this->readDataToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::readDataToolStripMenuItem_Click);
 			   // 
 			   // saveDataToolStripMenuItem
 			   // 
 			   this->saveDataToolStripMenuItem->Name = L"saveDataToolStripMenuItem";
-			   this->saveDataToolStripMenuItem->Size = System::Drawing::Size(129, 22);
-			   this->saveDataToolStripMenuItem->Text = L"Save_Data";
+			   this->saveDataToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			   this->saveDataToolStripMenuItem->Text = L"Save data";
 			   this->saveDataToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::saveDataToolStripMenuItem_Click);
 			   // 
 			   // processToolStripMenuItem
@@ -287,8 +287,8 @@ namespace CppCLRWinformsProjekt {
 			   // trainingResetMomentumsToolStripMenuItem
 			   // 
 			   this->trainingResetMomentumsToolStripMenuItem->Name = L"trainingResetMomentumsToolStripMenuItem";
-			   this->trainingResetMomentumsToolStripMenuItem->Size = System::Drawing::Size(227, 22);
-			   this->trainingResetMomentumsToolStripMenuItem->Text = L"Training (Reset Momentums)";
+			   this->trainingResetMomentumsToolStripMenuItem->Size = System::Drawing::Size(224, 22);
+			   this->trainingResetMomentumsToolStripMenuItem->Text = L"Training (reset momentums)";
 			   this->trainingResetMomentumsToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::trainingResetMomentumsToolStripMenuItem_Click);
 			   // 
 			   // testingToolStripMenuItem
