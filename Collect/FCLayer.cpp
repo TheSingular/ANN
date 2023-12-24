@@ -93,22 +93,21 @@ void FCLayer::updateWeights(array<double>^ nextDelta, double learningRate, doubl
 	//If there is no next layer, nextDelta is precalculated from output and target (nextDelta = output - target)
 	if (nextLayer == nullptr)
 	{
-		array<double>^ prevDelta = nextDelta;
 		//For each neuron
 		for (int i = 0; i < numNeurons; i++)
 		{
 			//Calculate delta
-			prevDelta[i] *= sigmoidDerivative(outputs[i]);
+			prevDelta[i] = sigmoidDerivative(outputs[i]) * nextDelta[i];
 			//Update bias
-			bias[i] += learningRate * prevDelta[i] + momentumRate * deltaBias[i];
-			deltaBias[i] = learningRate * prevDelta[i] + momentumRate * deltaBias[i];
+			bias[i] += learningRate * -1 * (prevDelta[i] + momentumRate * deltaBias[i]);
+			deltaBias[i] = learningRate * -1 * (prevDelta[i] + momentumRate * deltaBias[i]);
 
 			//For each input
 			for (int j = 0; j < numInputDim; j++)
 			{
 				//Update weights
-				weights[i][j] += learningRate * prevDelta[i] * inputs[j] + momentumRate * deltaWeights[i][j];
-				deltaWeights[i][j] = learningRate * prevDelta[i] * inputs[j] + momentumRate * deltaWeights[i][j];
+				weights[i][j] += learningRate * inputs[j] * (prevDelta[i] + momentumRate * deltaWeights[i][j]);
+				deltaWeights[i][j] = learningRate * inputs[j] * (prevDelta[i] + momentumRate * deltaWeights[i][j]);
 			}
 		}
 	}
@@ -135,14 +134,14 @@ void FCLayer::updateWeights(array<double>^ nextDelta, double learningRate, doubl
 		{
 
 			//Update bias and weights
-			bias[i] += learningRate * prevDelta[i] + momentumRate * deltaBias[i];
-			deltaBias[i] = learningRate * prevDelta[i] + momentumRate * deltaBias[i];
+			bias[i] += learningRate * -1 * (prevDelta[i] + momentumRate * deltaBias[i]);
+			deltaBias[i] = learningRate * -1 * (prevDelta[i] + momentumRate * deltaBias[i]);
 			//For each input
 			for (int j = 0; j < numInputDim; j++)
 			{
 				//Update weights
-				weights[i][j] += learningRate * prevDelta[i] * inputs[j] + momentumRate * deltaWeights[i][j];
-				deltaWeights[i][j] = learningRate * prevDelta[i] * inputs[j] + momentumRate * deltaWeights[i][j];
+				weights[i][j] += learningRate * inputs[j] * (prevDelta[i] + momentumRate * deltaWeights[i][j]);
+				deltaWeights[i][j] = learningRate * inputs[j] * (prevDelta[i] + momentumRate * deltaWeights[i][j]);
 			}
 		}
 	}
@@ -177,7 +176,7 @@ array<double>^ FCLayer::calculateOutputs()
 		{
 			outputs[i] += inputs[j] * weights[i][j];
 		}
-		outputs[i] += bias[i];
+		outputs[i] -= bias[i];
 		outputs[i] = sigmoid(outputs[i]);
 	}
 

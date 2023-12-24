@@ -152,7 +152,6 @@ void ANN::Train()
 	epochs = 0;
 	errorLog = gcnew array<double>(maxEpochs);
 	int batchCounter = 0;
-	array<double>^ firstDelta = gcnew array<double>(outputLayer->NumNeurons);
 
 	//Epoch loop (train until max epochs or error is below threshold)
 	for (int i = 0; i < maxEpochs && error > threshold; i++)
@@ -165,6 +164,7 @@ void ANN::Train()
 			double singleError = 0;
 			array<double>^ output = inputLayer->predict(input[j]);
 			batchCounter++;
+			array<double>^ firstDelta = gcnew array<double>(outputLayer->NumNeurons);
 
 			//Calculate error
 			if (output->Length == 1)
@@ -288,7 +288,7 @@ void ANN::loadFromFile(int^ width, int^ height)
 				iterator->Weights[i][j] = Convert::ToDouble(split[j]);
 			}
 		}
-		
+
 		line = Weights->ReadLine();
 		split = line->Split(' ');
 		for (int i = 0; i < iterator->NumNeurons; i++)

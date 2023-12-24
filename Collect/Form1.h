@@ -522,7 +522,7 @@ namespace CppCLRWinformsProjekt {
 				textBox1->Text += L"\r\n" + L"Error Log:" + L"\r\n";
 				for (int i = 0; i < ann->ErrorLog->Length; i++)
 				{
-					textBox1->Text += L"Epoch " + System::Convert::ToString(i) + L" Error: " + System::Convert::ToString(ann->ErrorLog[i]) + L"\r\n";
+					textBox1->Text += L"Epoch " + System::Convert::ToString(i + 1) + L" Error: " + System::Convert::ToString(ann->ErrorLog[i]) + L"\r\n";
 				}
 			}
 			catch (Exception^ ex) {
@@ -534,7 +534,7 @@ namespace CppCLRWinformsProjekt {
 		ann->clearall();
 		Set_Net->Text = L"Click here to setup the network";
 		Quick_Set_Net->Text = L"Quick single layer setup";
-		MessageBox::Show(L"Network is resetted");
+		MessageBox::Show(L"Network is reset");
 		Quick_Set_Net->Enabled = true;
 
 		pictureBox1->Image = nullptr;
@@ -559,7 +559,7 @@ namespace CppCLRWinformsProjekt {
 				textBox1->Text += L"\r\n" + L"Error Log:" + L"\r\n";
 				for (int i = 0; i < ann->ErrorLog->Length; i++)
 				{
-					textBox1->Text += L"Epoch " + System::Convert::ToString(i) + L" Error: " + System::Convert::ToString(ann->ErrorLog[i]) + L"\r\n";
+					textBox1->Text += L"Epoch " + System::Convert::ToString(i + 1) + L" Error: " + System::Convert::ToString(ann->ErrorLog[i]) + L"\r\n";
 				}
 			}
 			catch (Exception^ ex) {
