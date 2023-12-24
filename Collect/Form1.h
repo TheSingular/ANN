@@ -52,9 +52,9 @@ namespace CppCLRWinformsProjekt {
 
 	private: System::Windows::Forms::GroupBox^ groupBox2;
 	private: System::Windows::Forms::Label^ label2;
-	private: System::Windows::Forms::ComboBox^ ClassNoBox;
 
-	private: System::Windows::Forms::Label^ label3;
+
+
 
 	private:
 		/// <summary>
@@ -79,6 +79,7 @@ namespace CppCLRWinformsProjekt {
 	private: System::Windows::Forms::ToolStripMenuItem^ trainingResetMomentumsToolStripMenuItem;
 	private: System::Windows::Forms::Button^ Quick_Set_Net;
 	private: System::Windows::Forms::NumericUpDown^ numClasses;
+	private: System::Windows::Forms::NumericUpDown^ classNo;
 
 
 
@@ -99,9 +100,8 @@ namespace CppCLRWinformsProjekt {
 			   this->Set_Net = (gcnew System::Windows::Forms::Button());
 			   this->label1 = (gcnew System::Windows::Forms::Label());
 			   this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
+			   this->classNo = (gcnew System::Windows::Forms::NumericUpDown());
 			   this->label2 = (gcnew System::Windows::Forms::Label());
-			   this->ClassNoBox = (gcnew System::Windows::Forms::ComboBox());
-			   this->label3 = (gcnew System::Windows::Forms::Label());
 			   this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			   this->fileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			   this->readDataToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -117,6 +117,7 @@ namespace CppCLRWinformsProjekt {
 			   this->groupBox1->SuspendLayout();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numClasses))->BeginInit();
 			   this->groupBox2->SuspendLayout();
+			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classNo))->BeginInit();
 			   this->menuStrip1->SuspendLayout();
 			   this->SuspendLayout();
 			   // 
@@ -163,7 +164,7 @@ namespace CppCLRWinformsProjekt {
 			   this->Reset_Net->Name = L"Reset_Net";
 			   this->Reset_Net->Size = System::Drawing::Size(116, 42);
 			   this->Reset_Net->TabIndex = 3;
-			   this->Reset_Net->Text = L"Reset Network\n(Clear Everything)";
+			   this->Reset_Net->Text = L"Reset Network\r\n(Clear Everything)";
 			   this->Reset_Net->UseVisualStyleBackColor = true;
 			   this->Reset_Net->Click += gcnew System::EventHandler(this, &Form1::Reset_Net_Click);
 			   // 
@@ -171,7 +172,7 @@ namespace CppCLRWinformsProjekt {
 			   // 
 			   this->Quick_Set_Net->Location = System::Drawing::Point(10, 61);
 			   this->Quick_Set_Net->Name = L"Quick_Set_Net";
-			   this->Quick_Set_Net->Size = System::Drawing::Size(115, 59);
+			   this->Quick_Set_Net->Size = System::Drawing::Size(156, 59);
 			   this->Quick_Set_Net->TabIndex = 2;
 			   this->Quick_Set_Net->Text = L"Quick single layer setup";
 			   this->Quick_Set_Net->UseVisualStyleBackColor = true;
@@ -198,8 +199,8 @@ namespace CppCLRWinformsProjekt {
 			   // 
 			   // groupBox2
 			   // 
+			   this->groupBox2->Controls->Add(this->classNo);
 			   this->groupBox2->Controls->Add(this->label2);
-			   this->groupBox2->Controls->Add(this->ClassNoBox);
 			   this->groupBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(162)));
 			   this->groupBox2->Location = System::Drawing::Point(879, 191);
@@ -209,6 +210,16 @@ namespace CppCLRWinformsProjekt {
 			   this->groupBox2->TabStop = false;
 			   this->groupBox2->Text = L"Data Collection";
 			   // 
+			   // classNo
+			   // 
+			   this->classNo->Location = System::Drawing::Point(6, 19);
+			   this->classNo->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000000000, 0, 0, 0 });
+			   this->classNo->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
+			   this->classNo->Name = L"classNo";
+			   this->classNo->Size = System::Drawing::Size(86, 20);
+			   this->classNo->TabIndex = 13;
+			   this->classNo->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
+			   // 
 			   // label2
 			   // 
 			   this->label2->AutoSize = true;
@@ -217,28 +228,6 @@ namespace CppCLRWinformsProjekt {
 			   this->label2->Size = System::Drawing::Size(81, 13);
 			   this->label2->TabIndex = 1;
 			   this->label2->Text = L"Örnek Etiketi";
-			   // 
-			   // ClassNoBox
-			   // 
-			   this->ClassNoBox->FormattingEnabled = true;
-			   this->ClassNoBox->Items->AddRange(gcnew cli::array< System::Object^  >(9) {
-				   L"1", L"2", L"3", L"4", L"5", L"6", L"7", L"8",
-					   L"9"
-			   });
-			   this->ClassNoBox->Location = System::Drawing::Point(7, 20);
-			   this->ClassNoBox->Name = L"ClassNoBox";
-			   this->ClassNoBox->Size = System::Drawing::Size(75, 21);
-			   this->ClassNoBox->TabIndex = 0;
-			   this->ClassNoBox->Text = L"1";
-			   // 
-			   // label3
-			   // 
-			   this->label3->AutoSize = true;
-			   this->label3->Location = System::Drawing::Point(876, 265);
-			   this->label3->Name = L"label3";
-			   this->label3->Size = System::Drawing::Size(35, 13);
-			   this->label3->TabIndex = 3;
-			   this->label3->Text = L"label3";
 			   // 
 			   // menuStrip1
 			   // 
@@ -315,7 +304,7 @@ namespace CppCLRWinformsProjekt {
 			   // 
 			   // textBox1
 			   // 
-			   this->textBox1->Location = System::Drawing::Point(869, 299);
+			   this->textBox1->Location = System::Drawing::Point(869, 291);
 			   this->textBox1->Multiline = true;
 			   this->textBox1->Name = L"textBox1";
 			   this->textBox1->ScrollBars = System::Windows::Forms::ScrollBars::Both;
@@ -328,20 +317,20 @@ namespace CppCLRWinformsProjekt {
 			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			   this->ClientSize = System::Drawing::Size(1283, 633);
 			   this->Controls->Add(this->textBox1);
-			   this->Controls->Add(this->label3);
 			   this->Controls->Add(this->groupBox2);
 			   this->Controls->Add(this->groupBox1);
 			   this->Controls->Add(this->pictureBox1);
 			   this->Controls->Add(this->menuStrip1);
 			   this->MainMenuStrip = this->menuStrip1;
 			   this->Name = L"Form1";
-			   this->Text = L"Form1";
+			   this->Text = L"ANN - Batuhan ÇİMŞİT - 432923";
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			   this->groupBox1->ResumeLayout(false);
 			   this->groupBox1->PerformLayout();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numClasses))->EndInit();
 			   this->groupBox2->ResumeLayout(false);
 			   this->groupBox2->PerformLayout();
+			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classNo))->EndInit();
 			   this->menuStrip1->ResumeLayout(false);
 			   this->menuStrip1->PerformLayout();
 			   this->ResumeLayout(false);
@@ -365,7 +354,7 @@ namespace CppCLRWinformsProjekt {
 #pragma endregion
 	private: System::Void pictureBox1_MouseClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
 		if (!ann->Initialized)
-			MessageBox::Show("The Network Architeture should be firtly set up");
+			MessageBox::Show(L"The Network Architeture should be firtly set up");
 		else {
 			array<double>^ x = gcnew array<double>(2);
 			int temp_x = (System::Convert::ToInt32(e->X));
@@ -373,9 +362,9 @@ namespace CppCLRWinformsProjekt {
 			x[0] = double(temp_x - (pictureBox1->Width / 2));
 			x[1] = double((pictureBox1->Height / 2) - temp_y);
 			int label;
-			int numLabel = Convert::ToInt32(ClassNoBox->Text);
+			int numLabel = Convert::ToInt32(classNo->Value);
 			if (numLabel > (ann->OutputLayer->NumNeurons == 1 ? 2 : ann->OutputLayer->NumNeurons))
-				MessageBox::Show("The class label cannot be greater than the maximum number of classes.");
+				MessageBox::Show(L"The class label cannot be greater than the maximum number of classes.");
 			else {
 				label = numLabel - 1; //Döngüler 0 dan başladığından, label değeri 0 dan başlaması için bir eksiği alınmıştır
 				ann->addSample(x, label);
@@ -406,21 +395,25 @@ namespace CppCLRWinformsProjekt {
 		e->Graphics->DrawLine(pen, 0, center_height, pictureBox1->Width, center_height);
 	}
 	private: System::Void Set_Net_Click(System::Object^ sender, System::EventArgs^ e) {
+		try {
+			this->Hide();
+			ANNSetup^ ann_setup = gcnew ANNSetup(ann);
+			ann_setup->ShowDialog();
+			this->Show();
+			if (ann_setup->DialogResult == System::Windows::Forms::DialogResult::OK)
+				MessageBox::Show(L"Network is set up");
 
-		this->Hide();
-		ANNSetup^ ann_setup = gcnew ANNSetup(ann);
-		ann_setup->ShowDialog();
-		this->Show();
-		if (ann_setup->DialogResult == System::Windows::Forms::DialogResult::OK)
-			MessageBox::Show("Network is set up");
-
-		if (ann->Initialized)
-			Quick_Set_Net->Enabled = false;
-		else
-			Quick_Set_Net->Enabled = true;
+			if (ann->Initialized)
+				Quick_Set_Net->Enabled = false;
+			else
+				Quick_Set_Net->Enabled = true;
 
 
-		Set_Net->Text = " Network is Ready : \n Click to edit layers ";
+			Set_Net->Text = L" Network is Ready : \r\n Click to edit layers ";
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show(ex->Message);
+		}
 	}//Set_Net
 	private: System::Void readDataToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		int^ width = gcnew int;
@@ -434,7 +427,7 @@ namespace CppCLRWinformsProjekt {
 				draw_sample(ann->RawInput[i][0] + *width, *height - ann->RawInput[i][1], ann->Target[i]);
 			}
 			//draw_sample(temp_x, temp_y, label);
-			MessageBox::Show("Dosya basari ile okundu");
+			MessageBox::Show(L"File read successfully");
 		}
 		catch (Exception^ ex) {
 			MessageBox::Show(ex->Message);
@@ -454,114 +447,144 @@ namespace CppCLRWinformsProjekt {
 	}//Save_Data
 	private: System::Void testingToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		//Reset pictureBox
-		pictureBox1->Image = nullptr;
-		pictureBox1->Paint -= gcnew System::Windows::Forms::PaintEventHandler(this, &Form1::pictureBox1_Paint);
+		try {
+			pictureBox1->Image = nullptr;
+			pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Form1::pictureBox1_Paint);
 
-		array<double>^ x = gcnew array<double>(inputDim);
-		array<double>^ mean = ann->Mean;
-		array<double>^ std = ann->Std;
-		int num, temp_x, temp_y;
-		Bitmap^ surface = gcnew Bitmap(pictureBox1->Width, pictureBox1->Height);
-		pictureBox1->Image = surface;
-		Color c;
-		for (int row = 0; row < pictureBox1->Height; row += 2) {
-			for (int column = 0; column < pictureBox1->Width; column += 2) {
-				x[0] = (double)(column - (pictureBox1->Width / 2));
-				x[1] = (double)((pictureBox1->Height / 2) - row);
-				//x[0] = (x[0] - mean[0]) / std[0];
-				//x[1] = (x[1] - mean[1]) / std[1];
-				num = ann->predictRaw(x);
-				//MessageBox::Show("merhaba: class :" + System::Convert::ToString(numClass));
-				switch (num) {
-					//case 0: c = Color::FromArgb(0, 0, 0); break;
-					//case 1: c = Color::FromArgb(255, 0, 0); break;
-					//case 2: c = Color::FromArgb(0, 255, 0); break;
-					//case 3: c = Color::FromArgb(0, 0, 255); break;
-					//default: c = Color::FromArgb(0, 255, 255);
-				case 0: c = Color::Black; break;
-				case 1: c = Color::Red; break;
-				case 2: c = Color::Blue; break;
-				case 3: c = Color::Green; break;
-				case 4: c = Color::Yellow; break;
-				case 5: c = Color::Orange; break;
-				default: c = Color::YellowGreen;
+			array<double>^ x = gcnew array<double>(inputDim);
+			array<double>^ mean = ann->Mean;
+			array<double>^ std = ann->Std;
+			int num, temp_x, temp_y;
+			Bitmap^ surface = gcnew Bitmap(pictureBox1->Width, pictureBox1->Height);
+			pictureBox1->Image = surface;
+			Color c;
+			for (int row = 0; row < pictureBox1->Height; row += 2) {
+				for (int column = 0; column < pictureBox1->Width; column += 2) {
+					x[0] = (double)(column - (pictureBox1->Width / 2));
+					x[1] = (double)((pictureBox1->Height / 2) - row);
+					//x[0] = (x[0] - mean[0]) / std[0];
+					//x[1] = (x[1] - mean[1]) / std[1];
+					num = ann->predictRaw(x);
+					//MessageBox::Show("merhaba: class :" + System::Convert::ToString(numClass));
+					switch (num) {
+						//case 0: c = Color::FromArgb(0, 0, 0); break;
+						//case 1: c = Color::FromArgb(255, 0, 0); break;
+						//case 2: c = Color::FromArgb(0, 255, 0); break;
+						//case 3: c = Color::FromArgb(0, 0, 255); break;
+						//default: c = Color::FromArgb(0, 255, 255);
+					case 0: c = Color::Black; break;
+					case 1: c = Color::Red; break;
+					case 2: c = Color::Blue; break;
+					case 3: c = Color::Green; break;
+					case 4: c = Color::Yellow; break;
+					case 5: c = Color::Orange; break;
+					default: c = Color::YellowGreen;
+					}//switch
+					surface->SetPixel(column, row, c);
+				}//column
+				//MessageBox::Show("merhaba2: class :" + System::Convert::ToString(numClass));
+			}
+			//Samples Draw
+			Pen^ pen;// = gcnew Pen(Color::Black, 3.0f);
+			MessageBox::Show(L"Drawing Samples");
+			for (int i = 0; i < ann->RawInput->Length; i++) {
+				switch (int(ann->Target[i])) {
+				case 0: pen = gcnew Pen(Color::Black, 3.0f); break;
+				case 1: pen = gcnew Pen(Color::Red, 3.0f); break;
+				case 2: pen = gcnew Pen(Color::Blue, 3.0f); break;
+				case 3: pen = gcnew Pen(Color::Green, 3.0f); break;
+				case 4: pen = gcnew Pen(Color::Yellow, 3.0f); break;
+				case 5: pen = gcnew Pen(Color::Orange, 3.0f); break;
+				default: pen = gcnew Pen(Color::YellowGreen, 3.0f);
 				}//switch
-				surface->SetPixel(column, row, c);
-			}//column
-			//MessageBox::Show("merhaba2: class :" + System::Convert::ToString(numClass));
+				temp_x = int(ann->RawInput[i][0]) + pictureBox1->Width / 2;
+				temp_y = pictureBox1->Height / 2 - int(ann->RawInput[i][1]);
+				pictureBox1->CreateGraphics()->DrawLine(pen, temp_x - 5, temp_y, temp_x + 5, temp_y);
+				pictureBox1->CreateGraphics()->DrawLine(pen, temp_x, temp_y - 5, temp_x, temp_y + 5);
+			}
 		}
-		//Samples Draw
-		Pen^ pen;// = gcnew Pen(Color::Black, 3.0f);
-		MessageBox::Show("Drawing Samples");
-		for (int i = 0; i < ann->RawInput->Length; i++) {
-			switch (int(ann->Target[i])) {
-			case 0: pen = gcnew Pen(Color::Black, 3.0f); break;
-			case 1: pen = gcnew Pen(Color::Red, 3.0f); break;
-			case 2: pen = gcnew Pen(Color::Blue, 3.0f); break;
-			case 3: pen = gcnew Pen(Color::Green, 3.0f); break;
-			case 4: pen = gcnew Pen(Color::Yellow, 3.0f); break;
-			case 5: pen = gcnew Pen(Color::Orange, 3.0f); break;
-			default: pen = gcnew Pen(Color::YellowGreen, 3.0f);
-			}//switch
-			temp_x = int(ann->RawInput[i][0]) + pictureBox1->Width / 2;
-			temp_y = pictureBox1->Height / 2 - int(ann->RawInput[i][1]);
-			pictureBox1->CreateGraphics()->DrawLine(pen, temp_x - 5, temp_y, temp_x + 5, temp_y);
-			pictureBox1->CreateGraphics()->DrawLine(pen, temp_x, temp_y - 5, temp_x, temp_y + 5);
+		catch (Exception^ ex) {
+			MessageBox::Show(ex->Message);
 		}
 	}//Testing
 	private: System::Void trainingToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (!ann->Initialized)
-			MessageBox::Show("The Network Architeture should be firtly set up");
+			MessageBox::Show(L"The Network Architeture should be firtly set up");
 		else
 		{
-			MessageBox::Show("Training about to start.");
-			ann->Train();
-			MessageBox::Show("Training is completed");
+			try {
+				MessageBox::Show(L"Training about to start.");
+				ann->Train();
+				MessageBox::Show(L"Training is completed");
+				textBox1->Text = L"";
+				textBox1->Text += L"Epochs: " + System::Convert::ToString(ann->Epochs) + L"\r\n";
+				textBox1->Text += L"Final Error: " + System::Convert::ToString(ann->ErrorLog[ann->ErrorLog->Length - 1]) + L"\r\n";
+				textBox1->Text += L"\r\n" + L"Error Log:" + L"\r\n";
+				for (int i = 0; i < ann->ErrorLog->Length; i++)
+				{
+					textBox1->Text += L"Epoch " + System::Convert::ToString(i) + L" Error: " + System::Convert::ToString(ann->ErrorLog[i]) + L"\r\n";
+				}
+			}
+			catch (Exception^ ex) {
+				MessageBox::Show(ex->Message);
+			}
 		}
 	}
-private: System::Void Reset_Net_Click(System::Object^ sender, System::EventArgs^ e) {
-	ann->clearall();
-	Set_Net->Text = "Click here to setup the network";
-	MessageBox::Show("Network is resetted");
-	Quick_Set_Net->Enabled = true;
+	private: System::Void Reset_Net_Click(System::Object^ sender, System::EventArgs^ e) {
+		ann->clearall();
+		Set_Net->Text = L"Click here to setup the network";
+		Quick_Set_Net->Text = L"Quick single layer setup";
+		MessageBox::Show(L"Network is resetted");
+		Quick_Set_Net->Enabled = true;
 
-	pictureBox1->Image = nullptr;
-	pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Form1::pictureBox1_Paint);
-	pictureBox1->Refresh();
+		pictureBox1->Image = nullptr;
+		pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Form1::pictureBox1_Paint);
+		pictureBox1->Refresh();
 
 
-}
-private: System::Void trainingResetMomentumsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (!ann->Initialized)
-		MessageBox::Show("The Network Architeture should be firtly set up");
-	else
-	{
-		MessageBox::Show("Training about to start.");
-		ann->InputLayer->resetMomentums();
-		ann->Train();
-		MessageBox::Show("Training is completed");
-		textBox1->Text = "";
-		textBox1->Text += "Epochs: " + System::Convert::ToString(ann->Epochs) + "\r\n";
-		textBox1->Text += "Error: " + System::Convert::ToString(ann->Error) + "\r\n";
-		textBox1->Text += "\r\n" + "Error Log:" + "\r\n";
-		for (int i = 0; i < ann->ErrorLog->Length; i++)
+	}
+	private: System::Void trainingResetMomentumsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (!ann->Initialized)
+			MessageBox::Show(L"The Network Architeture should be firtly set up");
+		else
 		{
-			textBox1->Text += System::Convert::ToString(ann->ErrorLog[i]) + "\r\n";
+			try {
+				MessageBox::Show(L"Training about to start.");
+				ann->InputLayer->resetMomentums();
+				ann->Train();
+				MessageBox::Show(L"Training is completed");
+				textBox1->Text = L"";
+				textBox1->Text += L"Epochs: " + System::Convert::ToString(ann->Epochs) + L"\r\n";
+				textBox1->Text += L"Final Error: " + System::Convert::ToString(ann->ErrorLog[ann->ErrorLog->Length - 1]) + L"\r\n";
+				textBox1->Text += L"\r\n" + L"Error Log:" + L"\r\n";
+				for (int i = 0; i < ann->ErrorLog->Length; i++)
+				{
+					textBox1->Text += L"Epoch " + System::Convert::ToString(i) + L" Error: " + System::Convert::ToString(ann->ErrorLog[i]) + L"\r\n";
+				}
+			}
+			catch (Exception^ ex) {
+				MessageBox::Show(ex->Message);
+			}
 		}
-		textBox1->Refresh();
 	}
-}
-private: System::Void Quick_Set_Net_Click(System::Object^ sender, System::EventArgs^ e) {
-	// Network is constructed
-	if (!ann->Initialized)
-		ann->pickNumClass((int)numClasses->Value);
-	else
-		ann->updateLayer(ann->OutputLayer, Convert::ToInt32((int)numClasses->Value) == 2 ? 1 : Convert::ToInt32((int)numClasses->Value));
+	private: System::Void Quick_Set_Net_Click(System::Object^ sender, System::EventArgs^ e) {
+		// Network is constructed
+		try {
+			if (!ann->Initialized)
+				ann->pickNumClass((int)numClasses->Value);
+			else if (ann->InputLayer != ann->OutputLayer)
+				throw gcnew Exception(L"Network is multi-layer");
+			else
+				ann->updateLayer(ann->OutputLayer, Convert::ToInt32((int)numClasses->Value) == 2 ? 1 : Convert::ToInt32((int)numClasses->Value));
 
-	Quick_Set_Net->Enabled = false;
-	// Network is initialized
+			Quick_Set_Net->Text = L"Edit number of classes \r\n (Works only for single layer networks)";
+			// Network is initialized
 
-	MessageBox::Show("Network is set up");
-}
-};
+			MessageBox::Show(L"Network is set up");
+		}
+		catch (Exception^ ex) {
+			MessageBox::Show(ex->Message);
+		}
+	}
+	};
 }

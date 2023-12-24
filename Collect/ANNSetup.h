@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "ANN.h"
 #include "FCLayer.h"
 
@@ -38,6 +38,20 @@ namespace CppCLRWinformsProjekt {
 			{
 				layers->Add(iterator);
 				iterator = iterator->NextLayer;
+			}
+			if (ann->InputLayer == nullptr)
+			{
+				//If there is no input layer, disable all buttons but initialize network button and clearall button
+				addLayer->Enabled = false;
+				editLayer->Enabled = false;
+				setNumClass->Enabled = false;
+				removeFirstLayer->Enabled = false;
+			}
+			else if (ann->InputLayer == ann->OutputLayer)
+			{
+				//If there is only one layer, disable the remove layer button
+				removeFirstLayer->Enabled = false;
+				editLayer->Enabled = false;
 			}
 
 		}
@@ -102,8 +116,31 @@ namespace CppCLRWinformsProjekt {
 
 
 	private: System::Windows::Forms::NumericUpDown^ LearningRateInput;
-	private: System::Windows::Forms::NumericUpDown^ numNeurons;
-	private: System::Windows::Forms::NumericUpDown^ numClasses;
+	private: System::Windows::Forms::NumericUpDown^ addLayerNumNeuronsBox;
+
+
+	private: System::Windows::Forms::NumericUpDown^ setNumClassBox;
+	private: System::Windows::Forms::Button^ addLayer;
+	private: System::Windows::Forms::Button^ removeFirstLayer;
+
+
+
+	private: System::Windows::Forms::Button^ setNumClass;
+
+
+
+	private: System::Windows::Forms::Label^ label8;
+	private: System::Windows::Forms::Label^ label9;
+	private: System::Windows::Forms::NumericUpDown^ editLayerNumNeuronsBox;
+	private: System::Windows::Forms::Button^ editLayer;
+	private: System::Windows::Forms::Button^ initializeFirstLayer;
+	private: System::Windows::Forms::Button^ resetNetwork;
+	private: System::Windows::Forms::Label^ label10;
+	private: System::Windows::Forms::Label^ label11;
+	private: System::Windows::Forms::Label^ label12;
+
+
+
 
 	private: System::Windows::Forms::NumericUpDown^ ThresholdInput;
 
@@ -130,15 +167,28 @@ namespace CppCLRWinformsProjekt {
 			   this->MomentumRateInput = (gcnew System::Windows::Forms::NumericUpDown());
 			   this->LearningRateInput = (gcnew System::Windows::Forms::NumericUpDown());
 			   this->ThresholdInput = (gcnew System::Windows::Forms::NumericUpDown());
-			   this->numNeurons = (gcnew System::Windows::Forms::NumericUpDown());
-			   this->numClasses = (gcnew System::Windows::Forms::NumericUpDown());
+			   this->addLayerNumNeuronsBox = (gcnew System::Windows::Forms::NumericUpDown());
+			   this->setNumClassBox = (gcnew System::Windows::Forms::NumericUpDown());
+			   this->addLayer = (gcnew System::Windows::Forms::Button());
+			   this->removeFirstLayer = (gcnew System::Windows::Forms::Button());
+			   this->setNumClass = (gcnew System::Windows::Forms::Button());
+			   this->label8 = (gcnew System::Windows::Forms::Label());
+			   this->label9 = (gcnew System::Windows::Forms::Label());
+			   this->editLayerNumNeuronsBox = (gcnew System::Windows::Forms::NumericUpDown());
+			   this->editLayer = (gcnew System::Windows::Forms::Button());
+			   this->initializeFirstLayer = (gcnew System::Windows::Forms::Button());
+			   this->resetNetwork = (gcnew System::Windows::Forms::Button());
+			   this->label10 = (gcnew System::Windows::Forms::Label());
+			   this->label11 = (gcnew System::Windows::Forms::Label());
+			   this->label12 = (gcnew System::Windows::Forms::Label());
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->MaxEpochsInput))->BeginInit();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->BatchSizeInput))->BeginInit();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->MomentumRateInput))->BeginInit();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->LearningRateInput))->BeginInit();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ThresholdInput))->BeginInit();
-			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numNeurons))->BeginInit();
-			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numClasses))->BeginInit();
+			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addLayerNumNeuronsBox))->BeginInit();
+			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->setNumClassBox))->BeginInit();
+			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editLayerNumNeuronsBox))->BeginInit();
 			   this->SuspendLayout();
 			   // 
 			   // label1
@@ -156,9 +206,10 @@ namespace CppCLRWinformsProjekt {
 			   // 
 			   this->label2->Location = System::Drawing::Point(20, 72);
 			   this->label2->Name = L"label2";
-			   this->label2->Size = System::Drawing::Size(214, 29);
+			   this->label2->Size = System::Drawing::Size(332, 29);
 			   this->label2->TabIndex = 1;
 			   this->label2->Text = L"Editing the parameters below will not require network reconstruction.";
+			   this->label2->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			   // 
 			   // label3
 			   // 
@@ -263,31 +314,161 @@ namespace CppCLRWinformsProjekt {
 			   this->ThresholdInput->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 65536 });
 			   this->ThresholdInput->ValueChanged += gcnew System::EventHandler(this, &ANNSetup::ThresholdInput_ValueChanged);
 			   // 
-			   // numNeurons
+			   // addLayerNumNeuronsBox
 			   // 
-			   this->numNeurons->Location = System::Drawing::Point(555, 124);
-			   this->numNeurons->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000000000, 0, 0, 0 });
-			   this->numNeurons->Name = L"numNeurons";
-			   this->numNeurons->Size = System::Drawing::Size(120, 20);
-			   this->numNeurons->TabIndex = 11;
-			   this->numNeurons->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
+			   this->addLayerNumNeuronsBox->Location = System::Drawing::Point(686, 225);
+			   this->addLayerNumNeuronsBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000000000, 0, 0, 0 });
+			   this->addLayerNumNeuronsBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
+			   this->addLayerNumNeuronsBox->Name = L"addLayerNumNeuronsBox";
+			   this->addLayerNumNeuronsBox->Size = System::Drawing::Size(120, 20);
+			   this->addLayerNumNeuronsBox->TabIndex = 11;
+			   this->addLayerNumNeuronsBox->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10, 0, 0, 0 });
 			   // 
-			   // numClasses
+			   // setNumClassBox
 			   // 
-			   this->numClasses->Location = System::Drawing::Point(555, 436);
-			   this->numClasses->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000000000, 0, 0, 0 });
-			   this->numClasses->Name = L"numClasses";
-			   this->numClasses->Size = System::Drawing::Size(120, 20);
-			   this->numClasses->TabIndex = 11;
-			   this->numClasses->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
+			   this->setNumClassBox->Location = System::Drawing::Point(686, 455);
+			   this->setNumClassBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000000000, 0, 0, 0 });
+			   this->setNumClassBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2, 0, 0, 0 });
+			   this->setNumClassBox->Name = L"setNumClassBox";
+			   this->setNumClassBox->Size = System::Drawing::Size(120, 20);
+			   this->setNumClassBox->TabIndex = 11;
+			   this->setNumClassBox->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2, 0, 0, 0 });
+			   // 
+			   // addLayer
+			   // 
+			   this->addLayer->Location = System::Drawing::Point(847, 225);
+			   this->addLayer->Name = L"addLayer";
+			   this->addLayer->Size = System::Drawing::Size(190, 20);
+			   this->addLayer->TabIndex = 12;
+			   this->addLayer->Text = L"Add layer before first layer";
+			   this->addLayer->UseVisualStyleBackColor = true;
+			   this->addLayer->Click += gcnew System::EventHandler(this, &ANNSetup::addLayer_Click);
+			   // 
+			   // removeFirstLayer
+			   // 
+			   this->removeFirstLayer->Location = System::Drawing::Point(459, 225);
+			   this->removeFirstLayer->Name = L"removeFirstLayer";
+			   this->removeFirstLayer->Size = System::Drawing::Size(190, 20);
+			   this->removeFirstLayer->TabIndex = 12;
+			   this->removeFirstLayer->Text = L"Remove first layer";
+			   this->removeFirstLayer->UseVisualStyleBackColor = true;
+			   this->removeFirstLayer->Click += gcnew System::EventHandler(this, &ANNSetup::removeFirstLayer_Click);
+			   // 
+			   // setNumClass
+			   // 
+			   this->setNumClass->Location = System::Drawing::Point(847, 455);
+			   this->setNumClass->Name = L"setNumClass";
+			   this->setNumClass->Size = System::Drawing::Size(190, 20);
+			   this->setNumClass->TabIndex = 12;
+			   this->setNumClass->Text = L"Change number of classes";
+			   this->setNumClass->UseVisualStyleBackColor = true;
+			   this->setNumClass->Click += gcnew System::EventHandler(this, &ANNSetup::setNumClass_Click);
+			   // 
+			   // label8
+			   // 
+			   this->label8->AutoSize = true;
+			   this->label8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				   static_cast<System::Byte>(0)));
+			   this->label8->Location = System::Drawing::Point(608, 31);
+			   this->label8->Name = L"label8";
+			   this->label8->Size = System::Drawing::Size(281, 31);
+			   this->label8->TabIndex = 0;
+			   this->label8->Text = L"Unsafe Construction";
+			   // 
+			   // label9
+			   // 
+			   this->label9->Location = System::Drawing::Point(574, 72);
+			   this->label9->Name = L"label9";
+			   this->label9->Size = System::Drawing::Size(364, 45);
+			   this->label9->TabIndex = 1;
+			   this->label9->Text = L"Warning: Editing the layers below below will require network reconstruction. All "
+				   L"previous training will be discarded and the weights will be reinitialized";
+			   this->label9->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			   // 
+			   // editLayerNumNeuronsBox
+			   // 
+			   this->editLayerNumNeuronsBox->Location = System::Drawing::Point(686, 335);
+			   this->editLayerNumNeuronsBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000000000, 0, 0, 0 });
+			   this->editLayerNumNeuronsBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
+			   this->editLayerNumNeuronsBox->Name = L"editLayerNumNeuronsBox";
+			   this->editLayerNumNeuronsBox->Size = System::Drawing::Size(120, 20);
+			   this->editLayerNumNeuronsBox->TabIndex = 11;
+			   this->editLayerNumNeuronsBox->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10, 0, 0, 0 });
+			   // 
+			   // editLayer
+			   // 
+			   this->editLayer->Location = System::Drawing::Point(847, 335);
+			   this->editLayer->Name = L"editLayer";
+			   this->editLayer->Size = System::Drawing::Size(190, 20);
+			   this->editLayer->TabIndex = 12;
+			   this->editLayer->Text = L"Edit number of neurons for first layer";
+			   this->editLayer->UseVisualStyleBackColor = true;
+			   this->editLayer->Click += gcnew System::EventHandler(this, &ANNSetup::editLayer_Click);
+			   // 
+			   // initializeFirstLayer
+			   // 
+			   this->initializeFirstLayer->Location = System::Drawing::Point(459, 455);
+			   this->initializeFirstLayer->Name = L"initializeFirstLayer";
+			   this->initializeFirstLayer->Size = System::Drawing::Size(190, 20);
+			   this->initializeFirstLayer->TabIndex = 12;
+			   this->initializeFirstLayer->Text = L"Initialize network";
+			   this->initializeFirstLayer->UseVisualStyleBackColor = true;
+			   this->initializeFirstLayer->Click += gcnew System::EventHandler(this, &ANNSetup::initializeFirstLayer_Click);
+			   // 
+			   // resetNetwork
+			   // 
+			   this->resetNetwork->Location = System::Drawing::Point(459, 333);
+			   this->resetNetwork->Name = L"resetNetwork";
+			   this->resetNetwork->Size = System::Drawing::Size(190, 20);
+			   this->resetNetwork->TabIndex = 12;
+			   this->resetNetwork->Text = L"Reset the network";
+			   this->resetNetwork->UseVisualStyleBackColor = true;
+			   this->resetNetwork->Click += gcnew System::EventHandler(this, &ANNSetup::resetNetwork_Click);
+			   // 
+			   // label10
+			   // 
+			   this->label10->AutoSize = true;
+			   this->label10->Location = System::Drawing::Point(686, 205);
+			   this->label10->Name = L"label10";
+			   this->label10->Size = System::Drawing::Size(99, 13);
+			   this->label10->TabIndex = 13;
+			   this->label10->Text = L"Number of Neurons";
+			   // 
+			   // label11
+			   // 
+			   this->label11->AutoSize = true;
+			   this->label11->Location = System::Drawing::Point(683, 319);
+			   this->label11->Name = L"label11";
+			   this->label11->Size = System::Drawing::Size(99, 13);
+			   this->label11->TabIndex = 13;
+			   this->label11->Text = L"Number of Neurons";
+			   // 
+			   // label12
+			   // 
+			   this->label12->AutoSize = true;
+			   this->label12->Location = System::Drawing::Point(686, 439);
+			   this->label12->Name = L"label12";
+			   this->label12->Size = System::Drawing::Size(95, 13);
+			   this->label12->TabIndex = 13;
+			   this->label12->Text = L"Number of Classes";
 			   // 
 			   // ANNSetup
 			   // 
 			   this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			   this->ClientSize = System::Drawing::Size(1283, 690);
-			   this->Controls->Add(this->numClasses);
-			   this->Controls->Add(this->numNeurons);
+			   this->Controls->Add(this->label12);
+			   this->Controls->Add(this->label11);
+			   this->Controls->Add(this->label10);
+			   this->Controls->Add(this->resetNetwork);
+			   this->Controls->Add(this->initializeFirstLayer);
+			   this->Controls->Add(this->setNumClass);
+			   this->Controls->Add(this->removeFirstLayer);
+			   this->Controls->Add(this->editLayer);
+			   this->Controls->Add(this->addLayer);
+			   this->Controls->Add(this->setNumClassBox);
+			   this->Controls->Add(this->editLayerNumNeuronsBox);
+			   this->Controls->Add(this->addLayerNumNeuronsBox);
 			   this->Controls->Add(this->ThresholdInput);
 			   this->Controls->Add(this->LearningRateInput);
 			   this->Controls->Add(this->MomentumRateInput);
@@ -298,18 +479,21 @@ namespace CppCLRWinformsProjekt {
 			   this->Controls->Add(this->label5);
 			   this->Controls->Add(this->label4);
 			   this->Controls->Add(this->label3);
+			   this->Controls->Add(this->label9);
 			   this->Controls->Add(this->label2);
+			   this->Controls->Add(this->label8);
 			   this->Controls->Add(this->label1);
 			   this->Margin = System::Windows::Forms::Padding(2);
 			   this->Name = L"ANNSetup";
-			   this->Text = L"ANNSetup";
+			   this->Text = L"ANNSetup - Batuhan ÇİMŞİT - 432923";
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->MaxEpochsInput))->EndInit();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->BatchSizeInput))->EndInit();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->MomentumRateInput))->EndInit();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->LearningRateInput))->EndInit();
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->ThresholdInput))->EndInit();
-			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numNeurons))->EndInit();
-			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numClasses))->EndInit();
+			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addLayerNumNeuronsBox))->EndInit();
+			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->setNumClassBox))->EndInit();
+			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editLayerNumNeuronsBox))->EndInit();
 			   this->ResumeLayout(false);
 			   this->PerformLayout();
 
@@ -330,5 +514,47 @@ namespace CppCLRWinformsProjekt {
 	private: System::Void MaxEpochsInput_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
 		ann->MaxEpochs = (int)MaxEpochsInput->Value;
 	}
-	};
+	private: System::Void addLayer_Click(System::Object^ sender, System::EventArgs^ e) {
+		//Add layer before first layer
+		ann->insertLayerBefore(ann->InputLayer, (int)addLayerNumNeuronsBox->Value);
+		changed = true;
+		removeFirstLayer->Enabled = true;
+	}
+	private: System::Void editLayer_Click(System::Object^ sender, System::EventArgs^ e) {
+		//Edit number of neurons for first layer
+		ann->updateLayer(ann->InputLayer, (int)editLayerNumNeuronsBox->Value);
+		changed = true;
+	}
+	private: System::Void setNumClass_Click(System::Object^ sender, System::EventArgs^ e) {
+	//Change number of classes
+	ann->updateLayer(ann->OutputLayer, (int)setNumClassBox->Value == 2 ? 1 : (int)setNumClassBox->Value);
+	changed = true;
+	}
+	private: System::Void initializeFirstLayer_Click(System::Object^ sender, System::EventArgs^ e) {
+		//Initialize network
+		ann->pickNumClass((int)setNumClassBox->Value);
+		changed = true;
+		initializeFirstLayer->Enabled = false;
+		addLayer->Enabled = true;
+		editLayer->Enabled = true;
+		setNumClass->Enabled = true;
+	}
+private: System::Void resetNetwork_Click(System::Object^ sender, System::EventArgs^ e) {
+	//Reset the network
+	ann->clearall();
+	changed = true;
+	removeFirstLayer->Enabled = false;
+	addLayer->Enabled = false;
+	editLayer->Enabled = false;
+	setNumClass->Enabled = false;
+	initializeFirstLayer->Enabled = true;
+}
+private: System::Void removeFirstLayer_Click(System::Object^ sender, System::EventArgs^ e) {
+	//Remove first layer
+	ann->removeLayer(ann->InputLayer);
+	changed = true;
+	if (ann->InputLayer == ann->OutputLayer)
+		removeFirstLayer->Enabled = false;
+}
+};
 }

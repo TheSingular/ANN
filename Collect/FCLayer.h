@@ -1,4 +1,6 @@
 #pragma once
+using namespace System;
+
 ref class FCLayer
 {
 public:
@@ -92,5 +94,6 @@ private:
 	array<double>^ deltaBias;
 	array<double>^ inputs;
 	array<double>^ outputs;
+	Random^ randomGenerator = gcnew Random();
 	void updateNumInputDim();
 };

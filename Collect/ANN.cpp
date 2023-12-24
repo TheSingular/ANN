@@ -24,6 +24,7 @@ ANN::ANN()
 // insert a layer before the layer specified by next
 void ANN::insertLayerBefore(FCLayer^ next, int numNeurons)
 {
+
 	if (next == nullptr)
 	{
 		throw gcnew Exception("Next layer is null");
@@ -33,6 +34,10 @@ void ANN::insertLayerBefore(FCLayer^ next, int numNeurons)
 		throw gcnew Exception("Number of neurons must be greater than 0");
 	}
 	FCLayer^ layer = gcnew FCLayer(numNeurons, next->PrevLayer, next);
+	if (next == inputLayer)
+	{
+		inputLayer = layer;
+	}
 }
 // update a layer's number of neurons
 void ANN::updateLayer(FCLayer^ layer, int numNeurons)
@@ -62,6 +67,10 @@ void ANN::removeLayer(FCLayer^ layer)
 	if (layer->PrevLayer != nullptr)
 	{
 		layer->PrevLayer->NextLayer = layer->NextLayer;
+	}
+	else
+	{
+		inputLayer = layer->NextLayer;
 	}
 	layer->NextLayer->PrevLayer = layer->PrevLayer;
 	layer = nullptr;
@@ -97,7 +106,7 @@ void ANN::clearall()
 	learningRate = 0.1;
 	momentumRate = 0.9;
 	epochs = 0;
-	maxEpochs = 10000;
+	maxEpochs = 1000;
 	errorLog = gcnew array<double>(maxEpochs);
 	//Smart pointers will delete themselves
 	outputLayer = nullptr;
@@ -264,6 +273,10 @@ void ANN::loadFromFile(int^ width, int^ height)
 		else
 		{
 			iterator = gcnew FCLayer(Convert::ToInt32(split[1]), outputLayer->PrevLayer, outputLayer);
+		}
+		if (i == 0)
+		{
+			inputLayer = iterator;
 		}
 
 		for (int i = 0; i < iterator->NumNeurons; i++)
