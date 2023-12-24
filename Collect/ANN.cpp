@@ -94,6 +94,8 @@ void ANN::clearall()
 	batchSize = 1;
 	error = 1;
 	threshold = 0.1;
+	learningRate = 0.1;
+	momentumRate = 0.9;
 	epochs = 0;
 	maxEpochs = 10000;
 	errorLog = gcnew array<double>(maxEpochs);
@@ -111,6 +113,7 @@ void ANN::clearall()
 void ANN::Train()
 {
 	prepInput();
+	Array::Resize(errorLog, maxEpochs);
 	//check if input and target exist
 	if (input == nullptr || target == nullptr)
 	{
@@ -150,29 +153,30 @@ void ANN::Train()
 		//Loop through all inputs
 		for (int j = 0; j < input->Length; j++)
 		{
+			double singleError = 0;
 			array<double>^ output = inputLayer->predict(input[j]);
 			batchCounter++;
 
 			//Calculate error
 			if (output->Length == 1)
 			{
-				error += Math::Pow(output[0] - targetOutput2Class(target[j]), 2);
-				firstDelta[0] += output[0] - targetOutput2Class(target[j]);
+				singleError += Math::Pow(targetOutput2Class(target[j]) - output[0], 2);
+				firstDelta[0] += targetOutput2Class(target[j]) - output[0];
 			}
 			else
 			{
 				for (int k = 0; k < output->Length; k++)
 				{
-					error += Math::Pow(output[k] - targetOutput(target[j], k), 2);
-					firstDelta[k] += output[k] - targetOutput(target[j], k);
+					singleError += Math::Pow(targetOutput(target[j], k) - output[k], 2);
+					firstDelta[k] += targetOutput(target[j], k) - output[k];
 				}
 			}
-			error /= output->Length * 2;
+			error += singleError / (output->Length * 2);
 
 			if (batchCounter == batchSize || j == input->Length - 1)
 			{
 				//Update weights
-				outputLayer->updateWeights(firstDelta);
+				outputLayer->updateWeights(firstDelta, learningRate, momentumRate);
 				firstDelta = gcnew array<double>(output->Length);
 				batchCounter = 0;
 			}
@@ -185,6 +189,7 @@ void ANN::Train()
 		epochs++;
 	}
 	error = 1;
+	Array::Resize(errorLog, epochs);
 }
 
 //Predict output based on input, does not train
@@ -270,12 +275,14 @@ void ANN::loadFromFile(int^ width, int^ height)
 				iterator->Weights[i][j] = Convert::ToDouble(split[j]);
 			}
 		}
+		
+		line = Weights->ReadLine();
+		split = line->Split(' ');
 		for (int i = 0; i < iterator->NumNeurons; i++)
 		{
-			line = Weights->ReadLine();
-			split = line->Split(' ');
-			iterator->Bias[i] = Convert::ToDouble(split[0]);
+			iterator->Bias[i] = Convert::ToDouble(split[i]);
 		}
+
 		iterator = iterator->NextLayer;
 	}
 	Weights->Close();
@@ -285,7 +292,6 @@ void ANN::loadFromFile(int^ width, int^ height)
 	int tempTarget = 0;
 	while (line != nullptr)
 	{
-		line = Samples->ReadLine();
 		split = line->Split(' ');
 		for (int i = 0; i < split->Length - 1; i++)
 		{
@@ -293,8 +299,11 @@ void ANN::loadFromFile(int^ width, int^ height)
 		}
 		tempTarget = Convert::ToInt32(split[split->Length - 1]);
 		addSample(tempInput, tempTarget);
+		line = Samples->ReadLine();
+		tempInput = gcnew array<double>(numInputDim);
 	}
 	Samples->Close();
+	prepInput();
 }
 
 void ANN::saveToFile(int width, int height)
@@ -308,9 +317,9 @@ void ANN::saveToFile(int width, int height)
 
 		Samples->WriteLine("{0} {1} {2} {3}", inputLayer->NumInputDim, width / 2, height / 2, outputLayer->NumNeurons == 1 ? 2 : outputLayer->NumNeurons);
 		// Width,  Height, number of Class, data+label
-		for (int i = 0; i < input->Length; i++) {
-			for (int d = 0; d < input[0]->Length; d++)
-				Samples->Write("{0} ", input[i][d]);
+		for (int i = 0; i < rawInput->Length; i++) {
+			for (int d = 0; d < rawInput[0]->Length; d++)
+				Samples->Write("{0} ", rawInput[i][d]);
 			Samples->WriteLine("{0}", target[i]);
 		}
 		Samples->Close();
@@ -344,6 +353,7 @@ void ANN::saveToFile(int width, int height)
 			{
 				Weights->Write("{0} ", iterator->Bias[i]);
 			}
+			Weights->WriteLine();
 			iterator = iterator->NextLayer;
 		}
 		Weights->Close();
@@ -354,7 +364,7 @@ void ANN::saveToFile(int width, int height)
 //Adds a single input sample to the input array
 void ANN::addSample(array<double>^ input, int target)
 {
-	
+
 
 	if (input->Length != inputLayer->NumInputDim)
 	{

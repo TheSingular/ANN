@@ -48,7 +48,7 @@ namespace CppCLRWinformsProjekt {
 	private: System::Windows::Forms::Button^ Set_Net;
 
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::ComboBox^ ClassCountBox;
+
 
 	private: System::Windows::Forms::GroupBox^ groupBox2;
 	private: System::Windows::Forms::Label^ label2;
@@ -76,6 +76,10 @@ namespace CppCLRWinformsProjekt {
 	private: System::Windows::Forms::ToolStripMenuItem^ trainingToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ testingToolStripMenuItem;
 	private: System::Windows::Forms::Button^ Reset_Net;
+	private: System::Windows::Forms::ToolStripMenuItem^ trainingResetMomentumsToolStripMenuItem;
+	private: System::Windows::Forms::Button^ Quick_Set_Net;
+	private: System::Windows::Forms::NumericUpDown^ numClasses;
+
 
 
 		   System::ComponentModel::Container^ components;
@@ -89,10 +93,11 @@ namespace CppCLRWinformsProjekt {
 		   {
 			   this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			   this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			   this->numClasses = (gcnew System::Windows::Forms::NumericUpDown());
 			   this->Reset_Net = (gcnew System::Windows::Forms::Button());
+			   this->Quick_Set_Net = (gcnew System::Windows::Forms::Button());
 			   this->Set_Net = (gcnew System::Windows::Forms::Button());
 			   this->label1 = (gcnew System::Windows::Forms::Label());
-			   this->ClassCountBox = (gcnew System::Windows::Forms::ComboBox());
 			   this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
 			   this->label2 = (gcnew System::Windows::Forms::Label());
 			   this->ClassNoBox = (gcnew System::Windows::Forms::ComboBox());
@@ -103,12 +108,14 @@ namespace CppCLRWinformsProjekt {
 			   this->saveDataToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			   this->processToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			   this->trainingToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			   this->trainingResetMomentumsToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			   this->testingToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			   this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
 			   this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			   this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			   this->groupBox1->SuspendLayout();
+			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numClasses))->BeginInit();
 			   this->groupBox2->SuspendLayout();
 			   this->menuStrip1->SuspendLayout();
 			   this->SuspendLayout();
@@ -126,10 +133,11 @@ namespace CppCLRWinformsProjekt {
 			   // 
 			   // groupBox1
 			   // 
+			   this->groupBox1->Controls->Add(this->numClasses);
 			   this->groupBox1->Controls->Add(this->Reset_Net);
+			   this->groupBox1->Controls->Add(this->Quick_Set_Net);
 			   this->groupBox1->Controls->Add(this->Set_Net);
 			   this->groupBox1->Controls->Add(this->label1);
-			   this->groupBox1->Controls->Add(this->ClassCountBox);
 			   this->groupBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(162)));
 			   this->groupBox1->Location = System::Drawing::Point(869, 50);
@@ -138,6 +146,16 @@ namespace CppCLRWinformsProjekt {
 			   this->groupBox1->TabIndex = 1;
 			   this->groupBox1->TabStop = false;
 			   this->groupBox1->Text = L"Network Architecture";
+			   // 
+			   // numClasses
+			   // 
+			   this->numClasses->Location = System::Drawing::Point(10, 21);
+			   this->numClasses->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000000000, 0, 0, 0 });
+			   this->numClasses->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2, 0, 0, 0 });
+			   this->numClasses->Name = L"numClasses";
+			   this->numClasses->Size = System::Drawing::Size(97, 20);
+			   this->numClasses->TabIndex = 12;
+			   this->numClasses->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2, 0, 0, 0 });
 			   // 
 			   // Reset_Net
 			   // 
@@ -149,13 +167,23 @@ namespace CppCLRWinformsProjekt {
 			   this->Reset_Net->UseVisualStyleBackColor = true;
 			   this->Reset_Net->Click += gcnew System::EventHandler(this, &Form1::Reset_Net_Click);
 			   // 
+			   // Quick_Set_Net
+			   // 
+			   this->Quick_Set_Net->Location = System::Drawing::Point(10, 61);
+			   this->Quick_Set_Net->Name = L"Quick_Set_Net";
+			   this->Quick_Set_Net->Size = System::Drawing::Size(115, 59);
+			   this->Quick_Set_Net->TabIndex = 2;
+			   this->Quick_Set_Net->Text = L"Quick single layer setup";
+			   this->Quick_Set_Net->UseVisualStyleBackColor = true;
+			   this->Quick_Set_Net->Click += gcnew System::EventHandler(this, &Form1::Quick_Set_Net_Click);
+			   // 
 			   // Set_Net
 			   // 
-			   this->Set_Net->Location = System::Drawing::Point(10, 61);
+			   this->Set_Net->Location = System::Drawing::Point(183, 61);
 			   this->Set_Net->Name = L"Set_Net";
-			   this->Set_Net->Size = System::Drawing::Size(289, 59);
+			   this->Set_Net->Size = System::Drawing::Size(116, 59);
 			   this->Set_Net->TabIndex = 2;
-			   this->Set_Net->Text = L"Click here to setup the Network";
+			   this->Set_Net->Text = L"Click here to setup the network";
 			   this->Set_Net->UseVisualStyleBackColor = true;
 			   this->Set_Net->Click += gcnew System::EventHandler(this, &Form1::Set_Net_Click);
 			   // 
@@ -167,16 +195,6 @@ namespace CppCLRWinformsProjekt {
 			   this->label1->Size = System::Drawing::Size(69, 13);
 			   this->label1->TabIndex = 1;
 			   this->label1->Text = L"Sınıf Sayısı";
-			   // 
-			   // ClassCountBox
-			   // 
-			   this->ClassCountBox->FormattingEnabled = true;
-			   this->ClassCountBox->Items->AddRange(gcnew cli::array< System::Object^  >(6) { L"2", L"3", L"4", L"5", L"6", L"7" });
-			   this->ClassCountBox->Location = System::Drawing::Point(10, 20);
-			   this->ClassCountBox->Name = L"ClassCountBox";
-			   this->ClassCountBox->Size = System::Drawing::Size(82, 21);
-			   this->ClassCountBox->TabIndex = 0;
-			   this->ClassCountBox->Text = L"2";
 			   // 
 			   // groupBox2
 			   // 
@@ -262,9 +280,9 @@ namespace CppCLRWinformsProjekt {
 			   // 
 			   // processToolStripMenuItem
 			   // 
-			   this->processToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+			   this->processToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
 				   this->trainingToolStripMenuItem,
-					   this->testingToolStripMenuItem
+					   this->trainingResetMomentumsToolStripMenuItem, this->testingToolStripMenuItem
 			   });
 			   this->processToolStripMenuItem->Name = L"processToolStripMenuItem";
 			   this->processToolStripMenuItem->Size = System::Drawing::Size(59, 22);
@@ -273,14 +291,21 @@ namespace CppCLRWinformsProjekt {
 			   // trainingToolStripMenuItem
 			   // 
 			   this->trainingToolStripMenuItem->Name = L"trainingToolStripMenuItem";
-			   this->trainingToolStripMenuItem->Size = System::Drawing::Size(116, 22);
+			   this->trainingToolStripMenuItem->Size = System::Drawing::Size(227, 22);
 			   this->trainingToolStripMenuItem->Text = L"Training";
 			   this->trainingToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::trainingToolStripMenuItem_Click);
+			   // 
+			   // trainingResetMomentumsToolStripMenuItem
+			   // 
+			   this->trainingResetMomentumsToolStripMenuItem->Name = L"trainingResetMomentumsToolStripMenuItem";
+			   this->trainingResetMomentumsToolStripMenuItem->Size = System::Drawing::Size(227, 22);
+			   this->trainingResetMomentumsToolStripMenuItem->Text = L"Training (Reset Momentums)";
+			   this->trainingResetMomentumsToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::trainingResetMomentumsToolStripMenuItem_Click);
 			   // 
 			   // testingToolStripMenuItem
 			   // 
 			   this->testingToolStripMenuItem->Name = L"testingToolStripMenuItem";
-			   this->testingToolStripMenuItem->Size = System::Drawing::Size(116, 22);
+			   this->testingToolStripMenuItem->Size = System::Drawing::Size(227, 22);
 			   this->testingToolStripMenuItem->Text = L"Testing";
 			   this->testingToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::testingToolStripMenuItem_Click);
 			   // 
@@ -293,6 +318,7 @@ namespace CppCLRWinformsProjekt {
 			   this->textBox1->Location = System::Drawing::Point(869, 299);
 			   this->textBox1->Multiline = true;
 			   this->textBox1->Name = L"textBox1";
+			   this->textBox1->ScrollBars = System::Windows::Forms::ScrollBars::Both;
 			   this->textBox1->Size = System::Drawing::Size(247, 283);
 			   this->textBox1->TabIndex = 5;
 			   // 
@@ -313,6 +339,7 @@ namespace CppCLRWinformsProjekt {
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			   this->groupBox1->ResumeLayout(false);
 			   this->groupBox1->PerformLayout();
+			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numClasses))->EndInit();
 			   this->groupBox2->ResumeLayout(false);
 			   this->groupBox2->PerformLayout();
 			   this->menuStrip1->ResumeLayout(false);
@@ -379,13 +406,6 @@ namespace CppCLRWinformsProjekt {
 		e->Graphics->DrawLine(pen, 0, center_height, pictureBox1->Width, center_height);
 	}
 	private: System::Void Set_Net_Click(System::Object^ sender, System::EventArgs^ e) {
-		// Network is constructed
-		if (!ann->Initialized)
-			ann->pickNumClass(Convert::ToInt32(ClassCountBox->Text));
-		else
-			ann->updateLayer(ann->OutputLayer, Convert::ToInt32(ClassCountBox->Text) == 2 ? 1 : Convert::ToInt32(ClassCountBox->Text));
-
-		//Launch ANN Setup form
 
 		this->Hide();
 		ANNSetup^ ann_setup = gcnew ANNSetup(ann);
@@ -394,9 +414,13 @@ namespace CppCLRWinformsProjekt {
 		if (ann_setup->DialogResult == System::Windows::Forms::DialogResult::OK)
 			MessageBox::Show("Network is set up");
 
+		if (ann->Initialized)
+			Quick_Set_Net->Enabled = false;
+		else
+			Quick_Set_Net->Enabled = true;
 
 
-		Set_Net->Text = " Network is Ready : \n Click to set number of classes and edit layers ";
+		Set_Net->Text = " Network is Ready : \n Click to edit layers ";
 	}//Set_Net
 	private: System::Void readDataToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		int^ width = gcnew int;
@@ -415,6 +439,9 @@ namespace CppCLRWinformsProjekt {
 		catch (Exception^ ex) {
 			MessageBox::Show(ex->Message);
 		}
+
+		Quick_Set_Net->Enabled = false;
+
 	}//Read_Data
 	private: System::Void saveDataToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		try
@@ -426,6 +453,10 @@ namespace CppCLRWinformsProjekt {
 		}
 	}//Save_Data
 	private: System::Void testingToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		//Reset pictureBox
+		pictureBox1->Image = nullptr;
+		pictureBox1->Paint -= gcnew System::Windows::Forms::PaintEventHandler(this, &Form1::pictureBox1_Paint);
+
 		array<double>^ x = gcnew array<double>(inputDim);
 		array<double>^ mean = ann->Mean;
 		array<double>^ std = ann->Std;
@@ -461,7 +492,7 @@ namespace CppCLRWinformsProjekt {
 		}
 		//Samples Draw
 		Pen^ pen;// = gcnew Pen(Color::Black, 3.0f);
-		MessageBox::Show("Örnekler çizilecek");
+		MessageBox::Show("Drawing Samples");
 		for (int i = 0; i < ann->RawInput->Length; i++) {
 			switch (int(ann->Target[i])) {
 			case 0: pen = gcnew Pen(Color::Black, 3.0f); break;
@@ -490,8 +521,47 @@ namespace CppCLRWinformsProjekt {
 	}
 private: System::Void Reset_Net_Click(System::Object^ sender, System::EventArgs^ e) {
 	ann->clearall();
-	Set_Net->Text = "Setup the Network";
+	Set_Net->Text = "Click here to setup the network";
 	MessageBox::Show("Network is resetted");
+	Quick_Set_Net->Enabled = true;
+
+	pictureBox1->Image = nullptr;
+	pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Form1::pictureBox1_Paint);
+	pictureBox1->Refresh();
+
+
+}
+private: System::Void trainingResetMomentumsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (!ann->Initialized)
+		MessageBox::Show("The Network Architeture should be firtly set up");
+	else
+	{
+		MessageBox::Show("Training about to start.");
+		ann->InputLayer->resetMomentums();
+		ann->Train();
+		MessageBox::Show("Training is completed");
+		textBox1->Text = "";
+		textBox1->Text += "Epochs: " + System::Convert::ToString(ann->Epochs) + "\n";
+		textBox1->Text += "Error: " + System::Convert::ToString(ann->Error) + "\n";
+		textBox1->Text += "\n" + "Error Log:" + "\n";
+		for (int i = 0; i < ann->ErrorLog->Length; i++)
+		{
+			textBox1->Text += System::Convert::ToString(ann->ErrorLog[i]) + "\n";
+		}
+		textBox1->Refresh();
+	}
+}
+private: System::Void Quick_Set_Net_Click(System::Object^ sender, System::EventArgs^ e) {
+	// Network is constructed
+	if (!ann->Initialized)
+		ann->pickNumClass((int)numClasses->Value);
+	else
+		ann->updateLayer(ann->OutputLayer, Convert::ToInt32((int)numClasses->Value) == 2 ? 1 : Convert::ToInt32((int)numClasses->Value));
+
+	Quick_Set_Net->Enabled = false;
+	// Network is initialized
+
+	MessageBox::Show("Network is set up");
 }
 };
 }

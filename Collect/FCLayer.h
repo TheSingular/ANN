@@ -77,8 +77,9 @@ public:
 	//Methods
 	array<double>^ predict(array<double>^ inputs);
 	array<double>^ calculateOutputs();
-	void updateWeights(array<double>^ nextDelta);
+	void updateWeights(array<double>^ nextDelta, double learningRate, double momentumRate);
 	void initializeNeurons();
+	void resetMomentums();
 
 private:
 	int numNeurons = 1;
@@ -86,7 +87,9 @@ private:
 	FCLayer^ prevLayer;
 	FCLayer^ nextLayer;
 	array<array<double>^>^ weights;
+	array<array<double>^>^ deltaWeights;
 	array<double>^ bias;
+	array<double>^ deltaBias;
 	array<double>^ inputs;
 	array<double>^ outputs;
 	void updateNumInputDim();

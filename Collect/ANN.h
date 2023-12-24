@@ -51,6 +51,24 @@ public:
 			threshold = value;
 		}
 	}
+	// read-write
+	property double LearningRate {
+		double get() {
+			return learningRate;
+		}
+		void set(double value) {
+			learningRate = value;
+		}
+	}
+	// read-write
+	property double MomentumRate {
+		double get() {
+			return momentumRate;
+		}
+		void set(double value) {
+			momentumRate = value;
+		}
+	}
 	// read-only
 	property array<double>^ Mean {
 		array<double>^ get() {
@@ -93,6 +111,11 @@ public:
 			return initialized;
 		}
 	}
+	property array<double>^ ErrorLog {
+		array<double>^ get() {
+			return errorLog;
+		}
+	}
 
 
 	// Constructor & Destructor
@@ -127,6 +150,8 @@ private:
 	int batchSize = 1;
 	double error = 1;
 	double threshold = 0.1;
+	double learningRate = 0.1;
+	double momentumRate = 0.9;
 	array<double>^ mean = gcnew array<double>(2);
 	array<double>^ std = gcnew array<double>(2);
 	FCLayer^ outputLayer;

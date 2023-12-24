@@ -8,7 +8,7 @@ double inline sigmoid(double x)
 }
 double inline sigmoidDerivative(double x)
 {
-	return 2 * (1 - x) * x;
+	return  0.5 * (1 - x * x);
 }
 
 FCLayer::FCLayer(int numNeurons, FCLayer^ prevLayer, FCLayer^ nextLayer)
@@ -19,12 +19,30 @@ FCLayer::FCLayer(int numNeurons, FCLayer^ prevLayer, FCLayer^ nextLayer)
 	updateNumInputDim();
 }
 
+void FCLayer::resetMomentums()
+{
+	for (int i = 0; i < numNeurons; i++)
+	{
+		deltaBias[i] = 0;
+		for (int j = 0; j < numInputDim; j++)
+		{
+			deltaWeights[i][j] = 0;
+		}
+	}
+	if (nextLayer != nullptr)
+	{
+		nextLayer->resetMomentums();
+	}
+}
+
 //initializes neurons(weights) and bias with random values between -0.5 and 0.5
 void FCLayer::initializeNeurons()
 {
 	//initialize weights and bias
 	weights = gcnew array<array<double>^>(numNeurons);
+	deltaWeights = gcnew array<array<double>^>(numNeurons);
 	bias = gcnew array<double>(numNeurons);
+	deltaBias = gcnew array<double>(numNeurons);
 
 	//initialize random seed
 	Random^ randomGenerator = gcnew Random();
@@ -34,6 +52,7 @@ void FCLayer::initializeNeurons()
 	{
 		//Initialize weightarray for each neuron
 		weights[i] = gcnew array<double>(numInputDim);
+		deltaWeights[i] = gcnew array<double>(numInputDim);
 		for (int j = 0; j < numInputDim; j++)
 		{
 			//Random weights between -0.5 and 0.5
@@ -63,9 +82,12 @@ void FCLayer::updateNumInputDim()
 //Updates the weights and bias of the neurons
 //nextDelta is the delta of the next layer minus its inputs and learning rate
 //If there's no next layer, nextDelta is precalculated from the output and target (nextDelta = output - target)
-void FCLayer::updateWeights(array<double>^ nextDelta)
+void FCLayer::updateWeights(array<double>^ nextDelta, double learningRate, double momentumRate)
 {
-	double learningRate = 0.1;
+	if (learningRate == 0)
+		learningRate = 0.1;
+	if (momentumRate == 0)
+		momentumRate = 0.9;
 	array<double>^ prevDelta = gcnew array<double>(numNeurons);
 
 	//If there is no next layer, nextDelta is precalculated from output and target (nextDelta = output - target)
@@ -78,13 +100,15 @@ void FCLayer::updateWeights(array<double>^ nextDelta)
 			//Calculate delta
 			prevDelta[i] *= sigmoidDerivative(outputs[i]);
 			//Update bias
-			bias[i] += learningRate * prevDelta[i];
+			bias[i] += learningRate * prevDelta[i] + momentumRate * deltaBias[i];
+			deltaBias[i] = learningRate * prevDelta[i] + momentumRate * deltaBias[i];
 
 			//For each input
 			for (int j = 0; j < numInputDim; j++)
 			{
 				//Update weights
-				weights[i][j] += learningRate * prevDelta[i] * inputs[j];
+				weights[i][j] += learningRate * prevDelta[i] * inputs[j] + momentumRate * deltaWeights[i][j];
+				deltaWeights[i][j] = learningRate * prevDelta[i] * inputs[j] + momentumRate * deltaWeights[i][j];
 			}
 		}
 	}
@@ -111,19 +135,21 @@ void FCLayer::updateWeights(array<double>^ nextDelta)
 		{
 
 			//Update bias and weights
-			bias[i] += learningRate * prevDelta[i];
+			bias[i] += learningRate * prevDelta[i] + momentumRate * deltaBias[i];
+			deltaBias[i] = learningRate * prevDelta[i] + momentumRate * deltaBias[i];
 			//For each input
 			for (int j = 0; j < numInputDim; j++)
 			{
 				//Update weights
-				weights[i][j] += learningRate * prevDelta[i] * inputs[j];
+				weights[i][j] += learningRate * prevDelta[i] * inputs[j] + momentumRate * deltaWeights[i][j];
+				deltaWeights[i][j] = learningRate * prevDelta[i] * inputs[j] + momentumRate * deltaWeights[i][j];
 			}
 		}
 	}
 	//Back propagate to previous layer
 	if (prevLayer != nullptr)
 	{
-		prevLayer->updateWeights(prevDelta);
+		prevLayer->updateWeights(prevDelta, learningRate, momentumRate);
 	}
 }
 
