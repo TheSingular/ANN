@@ -116,12 +116,13 @@ public:
 	void addSample(array<double>^ input, int target);
 	void prepInput();
 	void pickNumClass(int numClass);
+	void clearall();
 
 
 private:
 	bool initialized = false;
 	int epochs = 0;
-	int maxEpochs = 1000;
+	int maxEpochs = 10000;
 	array<double>^ errorLog = gcnew array<double>(maxEpochs);
 	int batchSize = 1;
 	double error = 1;
@@ -134,7 +135,6 @@ private:
 	array<array<double>^>^ rawInput;
 	array<int>^ target;
 	//Reset everything, remove all layers
-	void clearall();
 	int predict(array<double>^ testSample);
 };
 

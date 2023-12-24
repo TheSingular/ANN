@@ -12,7 +12,7 @@ int inline targetOutput(int target, int index)
 
 int inline targetOutput2Class(int target)
 {
-	return target == 1 ? -1 : 1;
+	return target == 0 ? 1 : -1;
 }
 
 ANN::ANN()
@@ -91,10 +91,11 @@ void ANN::pickNumClass(int numClass)
 void ANN::clearall()
 {
 	initialized = false;
+	batchSize = 1;
 	error = 1;
 	threshold = 0.1;
 	epochs = 0;
-	maxEpochs = 1000;
+	maxEpochs = 10000;
 	errorLog = gcnew array<double>(maxEpochs);
 	//Smart pointers will delete themselves
 	outputLayer = nullptr;
@@ -155,14 +156,16 @@ void ANN::Train()
 			//Calculate error
 			if (output->Length == 1)
 			{
-				error += Math::Pow(targetOutput2Class(target[j]) - output[0], 2);
-				firstDelta[0] += targetOutput2Class(target[j]) - output[0];
+				error += Math::Pow(output[0] - targetOutput2Class(target[j]), 2);
+				firstDelta[0] += output[0] - targetOutput2Class(target[j]);
 			}
-
-			for (int k = 0; k < output->Length; k++)
+			else
 			{
-				error += Math::Pow(targetOutput(target[j], k) - output[k], 2);
-				firstDelta[k] += targetOutput(target[j], k) - output[k];
+				for (int k = 0; k < output->Length; k++)
+				{
+					error += Math::Pow(output[k] - targetOutput(target[j], k), 2);
+					firstDelta[k] += output[k] - targetOutput(target[j], k);
+				}
 			}
 			error /= output->Length * 2;
 

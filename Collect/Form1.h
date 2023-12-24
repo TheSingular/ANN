@@ -75,6 +75,7 @@ namespace CppCLRWinformsProjekt {
 	private: System::Windows::Forms::ToolStripMenuItem^ processToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ trainingToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ testingToolStripMenuItem;
+	private: System::Windows::Forms::Button^ Reset_Net;
 
 
 		   System::ComponentModel::Container^ components;
@@ -88,6 +89,7 @@ namespace CppCLRWinformsProjekt {
 		   {
 			   this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			   this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			   this->Reset_Net = (gcnew System::Windows::Forms::Button());
 			   this->Set_Net = (gcnew System::Windows::Forms::Button());
 			   this->label1 = (gcnew System::Windows::Forms::Label());
 			   this->ClassCountBox = (gcnew System::Windows::Forms::ComboBox());
@@ -124,6 +126,7 @@ namespace CppCLRWinformsProjekt {
 			   // 
 			   // groupBox1
 			   // 
+			   this->groupBox1->Controls->Add(this->Reset_Net);
 			   this->groupBox1->Controls->Add(this->Set_Net);
 			   this->groupBox1->Controls->Add(this->label1);
 			   this->groupBox1->Controls->Add(this->ClassCountBox);
@@ -136,13 +139,23 @@ namespace CppCLRWinformsProjekt {
 			   this->groupBox1->TabStop = false;
 			   this->groupBox1->Text = L"Network Architecture";
 			   // 
+			   // Reset_Net
+			   // 
+			   this->Reset_Net->Location = System::Drawing::Point(183, 13);
+			   this->Reset_Net->Name = L"Reset_Net";
+			   this->Reset_Net->Size = System::Drawing::Size(116, 42);
+			   this->Reset_Net->TabIndex = 3;
+			   this->Reset_Net->Text = L"Reset Network\n(Clear Everything)";
+			   this->Reset_Net->UseVisualStyleBackColor = true;
+			   this->Reset_Net->Click += gcnew System::EventHandler(this, &Form1::Reset_Net_Click);
+			   // 
 			   // Set_Net
 			   // 
 			   this->Set_Net->Location = System::Drawing::Point(10, 61);
 			   this->Set_Net->Name = L"Set_Net";
 			   this->Set_Net->Size = System::Drawing::Size(289, 59);
 			   this->Set_Net->TabIndex = 2;
-			   this->Set_Net->Text = L"Network Setting";
+			   this->Set_Net->Text = L"Click here to setup the Network";
 			   this->Set_Net->UseVisualStyleBackColor = true;
 			   this->Set_Net->Click += gcnew System::EventHandler(this, &Form1::Set_Net_Click);
 			   // 
@@ -236,14 +249,14 @@ namespace CppCLRWinformsProjekt {
 			   // readDataToolStripMenuItem
 			   // 
 			   this->readDataToolStripMenuItem->Name = L"readDataToolStripMenuItem";
-			   this->readDataToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			   this->readDataToolStripMenuItem->Size = System::Drawing::Size(129, 22);
 			   this->readDataToolStripMenuItem->Text = L"Read_Data";
 			   this->readDataToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::readDataToolStripMenuItem_Click);
 			   // 
 			   // saveDataToolStripMenuItem
 			   // 
 			   this->saveDataToolStripMenuItem->Name = L"saveDataToolStripMenuItem";
-			   this->saveDataToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			   this->saveDataToolStripMenuItem->Size = System::Drawing::Size(129, 22);
 			   this->saveDataToolStripMenuItem->Text = L"Save_Data";
 			   this->saveDataToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::saveDataToolStripMenuItem_Click);
 			   // 
@@ -260,14 +273,14 @@ namespace CppCLRWinformsProjekt {
 			   // trainingToolStripMenuItem
 			   // 
 			   this->trainingToolStripMenuItem->Name = L"trainingToolStripMenuItem";
-			   this->trainingToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			   this->trainingToolStripMenuItem->Size = System::Drawing::Size(116, 22);
 			   this->trainingToolStripMenuItem->Text = L"Training";
 			   this->trainingToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::trainingToolStripMenuItem_Click);
 			   // 
 			   // testingToolStripMenuItem
 			   // 
 			   this->testingToolStripMenuItem->Name = L"testingToolStripMenuItem";
-			   this->testingToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			   this->testingToolStripMenuItem->Size = System::Drawing::Size(116, 22);
 			   this->testingToolStripMenuItem->Text = L"Testing";
 			   this->testingToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::testingToolStripMenuItem_Click);
 			   // 
@@ -475,5 +488,10 @@ namespace CppCLRWinformsProjekt {
 			MessageBox::Show("Training is completed");
 		}
 	}
+private: System::Void Reset_Net_Click(System::Object^ sender, System::EventArgs^ e) {
+	ann->clearall();
+	Set_Net->Text = "Setup the Network";
+	MessageBox::Show("Network is resetted");
+}
 };
 }
