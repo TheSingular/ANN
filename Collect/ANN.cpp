@@ -246,7 +246,7 @@ void ANN::loadFromFile(int^ width, int^ height)
 	clearall();
 
 	String^ SampleLoc = gcnew String("../Data/Samples.txt");
-	String^ WeightLoc = gcnew String("../Data/weights.txt");
+	String^ WeightLoc = gcnew String("../Data/Weights.txt");
 	StreamReader^ Samples = gcnew StreamReader(SampleLoc);
 	StreamReader^ Weights = gcnew StreamReader(WeightLoc);
 
@@ -325,7 +325,7 @@ void ANN::saveToFile(int width, int height)
 		char** c = new char* [2];
 
 		String^ SampleLoc = gcnew String("../Data/Samples.txt");
-		String^ WeightLoc = gcnew String("../Data/weights.txt");
+		String^ WeightLoc = gcnew String("../Data/Weights.txt");
 		StreamWriter^ Samples = gcnew StreamWriter(SampleLoc, false);
 
 		Samples->WriteLine("{0} {1} {2} {3}", inputLayer->NumInputDim, width / 2, height / 2, outputLayer->NumNeurons == 1 ? 2 : outputLayer->NumNeurons);
