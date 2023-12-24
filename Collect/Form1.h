@@ -541,12 +541,12 @@ private: System::Void trainingResetMomentumsToolStripMenuItem_Click(System::Obje
 		ann->Train();
 		MessageBox::Show("Training is completed");
 		textBox1->Text = "";
-		textBox1->Text += "Epochs: " + System::Convert::ToString(ann->Epochs) + "\n";
-		textBox1->Text += "Error: " + System::Convert::ToString(ann->Error) + "\n";
-		textBox1->Text += "\n" + "Error Log:" + "\n";
+		textBox1->Text += "Epochs: " + System::Convert::ToString(ann->Epochs) + "\r\n";
+		textBox1->Text += "Error: " + System::Convert::ToString(ann->Error) + "\r\n";
+		textBox1->Text += "\r\n" + "Error Log:" + "\r\n";
 		for (int i = 0; i < ann->ErrorLog->Length; i++)
 		{
-			textBox1->Text += System::Convert::ToString(ann->ErrorLog[i]) + "\n";
+			textBox1->Text += System::Convert::ToString(ann->ErrorLog[i]) + "\r\n";
 		}
 		textBox1->Refresh();
 	}
