@@ -420,6 +420,9 @@ namespace CppCLRWinformsProjekt {
 		int^ height = gcnew int;
 		try
 		{
+			pictureBox1->Image = nullptr;
+			pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Form1::pictureBox1_Paint);
+
 			ann->loadFromFile(width, height);
 			// Veri Kümesini okunacak 
 
