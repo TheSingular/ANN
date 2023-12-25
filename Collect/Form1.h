@@ -193,9 +193,9 @@ namespace CppCLRWinformsProjekt {
 			   this->label1->AutoSize = true;
 			   this->label1->Location = System::Drawing::Point(108, 23);
 			   this->label1->Name = L"label1";
-			   this->label1->Size = System::Drawing::Size(112, 13);
+			   this->label1->Size = System::Drawing::Size(111, 13);
 			   this->label1->TabIndex = 1;
-			   this->label1->Text = L"Number of Classes";
+			   this->label1->Text = L"Number of classes";
 			   // 
 			   // groupBox2
 			   // 
@@ -225,9 +225,9 @@ namespace CppCLRWinformsProjekt {
 			   this->label2->AutoSize = true;
 			   this->label2->Location = System::Drawing::Point(98, 23);
 			   this->label2->Name = L"label2";
-			   this->label2->Size = System::Drawing::Size(98, 13);
+			   this->label2->Size = System::Drawing::Size(96, 13);
 			   this->label2->TabIndex = 1;
-			   this->label2->Text = L"Label of Sample";
+			   this->label2->Text = L"Label of sample";
 			   // 
 			   // menuStrip1
 			   // 
