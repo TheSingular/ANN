@@ -354,7 +354,7 @@ namespace CppCLRWinformsProjekt {
 #pragma endregion
 	private: System::Void pictureBox1_MouseClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
 		if (!ann->Initialized)
-			MessageBox::Show(L"The Network Architeture should be firtly set up");
+			MessageBox::Show(L"Setup the network architecture first!");
 		else {
 			array<double>^ x = gcnew array<double>(2);
 			int temp_x = (System::Convert::ToInt32(e->X));
@@ -400,11 +400,12 @@ namespace CppCLRWinformsProjekt {
 			ANNSetup^ ann_setup = gcnew ANNSetup(ann);
 			ann_setup->ShowDialog();
 			this->Show();
-			if (ann_setup->DialogResult == System::Windows::Forms::DialogResult::OK)
-				MessageBox::Show(L"Network is set up");
 
 			if (ann->Initialized)
+			{
 				Quick_Set_Net->Enabled = false;
+				MessageBox::Show(L"Network is set up");
+			}
 			else
 				Quick_Set_Net->Enabled = true;
 
@@ -512,7 +513,7 @@ namespace CppCLRWinformsProjekt {
 	}//Testing
 	private: System::Void trainingToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (!ann->Initialized)
-			MessageBox::Show(L"The Network Architeture should be firtly set up");
+			MessageBox::Show(L"Setup the network architecture first!");
 		else
 		{
 			try {
@@ -548,11 +549,11 @@ namespace CppCLRWinformsProjekt {
 	}
 	private: System::Void trainingResetMomentumsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (!ann->Initialized)
-			MessageBox::Show(L"The Network Architeture should be firtly set up");
+			MessageBox::Show(L"Setup the network architecture first!");
 		else
 		{
 			try {
-				MessageBox::Show(L"Training about to start.");
+				MessageBox::Show(L"Training is about to start.");
 				ann->InputLayer->resetMomentums();
 				ann->Train();
 				MessageBox::Show(L"Training is completed");
@@ -578,7 +579,7 @@ namespace CppCLRWinformsProjekt {
 			else if (ann->InputLayer != ann->OutputLayer)
 				throw gcnew Exception(L"Network is multi-layer");
 			else
-				ann->updateLayer(ann->OutputLayer, Convert::ToInt32((int)numClasses->Value) == 2 ? 1 : Convert::ToInt32((int)numClasses->Value));
+				ann->updateLayer(ann->OutputLayer, Convert::ToInt32((int)numClasses->Value));
 
 			Quick_Set_Net->Text = L"Edit number of classes \r\n (Works only for single layer networks)";
 			// Network is initialized

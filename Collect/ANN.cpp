@@ -50,6 +50,19 @@ void ANN::updateLayer(FCLayer^ layer, int numNeurons)
 	{
 		throw gcnew Exception("Number of neurons must be greater than 0");
 	}
+	else if (numNeurons == 1 && layer->NextLayer == nullptr)
+	{
+		throw gcnew Exception("Cannot have 1 class in network");
+	}
+	else if (numNeurons == 2 && layer->NextLayer == nullptr)
+	{
+		numNeurons = 1;
+	}
+
+	if (numNeurons == layer->NumNeurons)
+	{
+		return;
+	}
 	layer->NumNeurons = numNeurons;
 }
 

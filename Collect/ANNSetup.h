@@ -527,7 +527,7 @@ namespace CppCLRWinformsProjekt {
 	}
 	private: System::Void setNumClass_Click(System::Object^ sender, System::EventArgs^ e) {
 	//Change number of classes
-	ann->updateLayer(ann->OutputLayer, (int)setNumClassBox->Value == 2 ? 1 : (int)setNumClassBox->Value);
+	ann->updateLayer(ann->OutputLayer, (int)setNumClassBox->Value);
 	changed = true;
 	}
 	private: System::Void initializeFirstLayer_Click(System::Object^ sender, System::EventArgs^ e) {
