@@ -138,7 +138,7 @@ public:
 	void saveToFile(int width, int height);
 	void addSample(array<double>^ input, int target);
 	void prepInput();
-	void pickNumClass(int numClass);
+	void initializeFirstLayer(int numClass);
 	void clearall();
 
 

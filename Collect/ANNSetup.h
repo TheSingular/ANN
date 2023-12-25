@@ -532,7 +532,7 @@ namespace CppCLRWinformsProjekt {
 	}
 	private: System::Void initializeFirstLayer_Click(System::Object^ sender, System::EventArgs^ e) {
 		//Initialize network
-		ann->pickNumClass((int)setNumClassBox->Value);
+		ann->initializeFirstLayer((int)setNumClassBox->Value);
 		changed = true;
 		initializeFirstLayer->Enabled = false;
 		addLayer->Enabled = true;

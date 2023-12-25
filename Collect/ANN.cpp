@@ -77,7 +77,7 @@ void ANN::removeLayer(FCLayer^ layer)
 }
 
 //Initialize the ANN with a single layer
-void ANN::pickNumClass(int numClass)
+void ANN::initializeFirstLayer(int numClass)
 {
 	if (numClass < 2)
 	{
@@ -257,7 +257,7 @@ void ANN::loadFromFile(int^ width, int^ height)
 	int numClass = Convert::ToInt32(split[3]);
 	int numInputDim = Convert::ToInt32(split[0]);
 
-	pickNumClass(numClass);
+	initializeFirstLayer(numClass);
 
 	line = Weights->ReadLine();
 	int numLayer = Convert::ToInt32(line);

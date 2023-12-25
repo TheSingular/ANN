@@ -574,7 +574,7 @@ namespace CppCLRWinformsProjekt {
 		// Network is constructed
 		try {
 			if (!ann->Initialized)
-				ann->pickNumClass((int)numClasses->Value);
+				ann->initializeFirstLayer((int)numClasses->Value);
 			else if (ann->InputLayer != ann->OutputLayer)
 				throw gcnew Exception(L"Network is multi-layer");
 			else
