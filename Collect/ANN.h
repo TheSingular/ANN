@@ -145,7 +145,7 @@ public:
 private:
 	bool initialized = false;
 	int epochs = 0;
-	int maxEpochs = 1000;
+	int maxEpochs = 100000;
 	array<double>^ errorLog = gcnew array<double>(maxEpochs);
 	int batchSize = 1;
 	double error = 1;

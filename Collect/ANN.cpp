@@ -129,7 +129,7 @@ void ANN::clearall()
 	learningRate = 0.1;
 	momentumRate = 0.9;
 	epochs = 0;
-	maxEpochs = 1000;
+	maxEpochs = 100000;
 	errorLog = gcnew array<double>(maxEpochs);
 	//Smart pointers will delete themselves
 	outputLayer = nullptr;

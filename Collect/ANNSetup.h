@@ -266,7 +266,7 @@ namespace CppCLRWinformsProjekt {
 			   this->MaxEpochsInput->Name = L"MaxEpochsInput";
 			   this->MaxEpochsInput->Size = System::Drawing::Size(180, 26);
 			   this->MaxEpochsInput->TabIndex = 4;
-			   this->MaxEpochsInput->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
+			   this->MaxEpochsInput->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 100000, 0, 0, 0 });
 			   this->MaxEpochsInput->ValueChanged += gcnew System::EventHandler(this, &ANNSetup::MaxEpochsInput_ValueChanged);
 			   // 
 			   // BatchSizeInput
