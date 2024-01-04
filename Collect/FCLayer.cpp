@@ -9,6 +9,11 @@ double inline sigmoid(double x)
 double inline sigmoidDerivative(double x)
 {
 	return  0.5 * (1 - x * x);
+
+}
+double inline tanhDerivative(double x)
+{
+	return  1 - x * x;
 }
 
 FCLayer::FCLayer(int numNeurons, FCLayer^ prevLayer, FCLayer^ nextLayer)
@@ -23,13 +28,11 @@ FCLayer::FCLayer(int numNeurons, FCLayer^ prevLayer, FCLayer^ nextLayer)
 
 void FCLayer::resetMomentums()
 {
+	deltaBias = gcnew array<double>(numNeurons);
+	deltaWeights = gcnew array<array<double>^>(numNeurons);
 	for (int i = 0; i < numNeurons; i++)
 	{
-		deltaBias[i] = 0;
-		for (int j = 0; j < numInputDim; j++)
-		{
-			deltaWeights[i][j] = 0;
-		}
+		deltaWeights[i] = gcnew array<double>(numInputDim);
 	}
 	if (nextLayer != nullptr)
 	{
@@ -62,6 +65,10 @@ void FCLayer::initializeNeurons()
 		}
 		//Random bias between -0.5 and 0.5
 		bias[i] = randomGenerator->NextDouble() - 0.5;
+	}
+	if (nextLayer != nullptr)
+	{
+		nextLayer->initializeNeurons();
 	}
 }
 //Updates the number of inputs for each neuron and reconstructs the weights and bias
@@ -97,18 +104,8 @@ void FCLayer::updateWeights(array<double>^ nextDelta, double learningRate, doubl
 		for (int i = 0; i < numNeurons; i++)
 		{
 			//Calculate delta
-			prevDelta[i] = sigmoidDerivative(outputs[i]) * nextDelta[i];
-			//Update bias
-			bias[i] += learningRate * -1 * (prevDelta[i] + momentumRate * deltaBias[i]);
-			deltaBias[i] = learningRate * -1 * (prevDelta[i] + momentumRate * deltaBias[i]);
-
-			//For each input
-			for (int j = 0; j < numInputDim; j++)
-			{
-				//Update weights
-				weights[i][j] += learningRate * inputs[j] * (prevDelta[i] + momentumRate * deltaWeights[i][j]);
-				deltaWeights[i][j] = learningRate * inputs[j] * (prevDelta[i] + momentumRate * deltaWeights[i][j]);
-			}
+			prevDelta[i] = tanhDerivative(outputs[i]) * nextDelta[i];
+			//prevDelta[i] = sigmoidDerivative(outputs[i]) * nextDelta[i];
 		}
 	}
 	//If there is a next layer, nextDelta is calculated from the next layer's delta
@@ -126,23 +123,24 @@ void FCLayer::updateWeights(array<double>^ nextDelta, double learningRate, doubl
 				prevDelta[j] += nextDelta[k] * nextLayer->weights[k][j];
 			}
 			//Finalize delta
-			prevDelta[j] *= sigmoidDerivative(outputs[j]);
+			prevDelta[j] *= tanhDerivative(outputs[j]);
+			//prevDelta[j] *= sigmoidDerivative(outputs[j]);
 		}
+	}
 
-		//For each neuron
-		for (int i = 0; i < numNeurons; i++)
+	//For each neuron
+	for (int i = 0; i < numNeurons; i++)
+	{
+
+		//Update bias and weights
+		bias[i] += learningRate * -1 * prevDelta[i] - momentumRate * deltaBias[i];
+		deltaBias[i] = learningRate * -1 * prevDelta[i] - momentumRate * deltaBias[i];
+		//For each input
+		for (int j = 0; j < numInputDim; j++)
 		{
-
-			//Update bias and weights
-			bias[i] += learningRate * -1 * (prevDelta[i] + momentumRate * deltaBias[i]);
-			deltaBias[i] = learningRate * -1 * (prevDelta[i] + momentumRate * deltaBias[i]);
-			//For each input
-			for (int j = 0; j < numInputDim; j++)
-			{
-				//Update weights
-				weights[i][j] += learningRate * inputs[j] * (prevDelta[i] + momentumRate * deltaWeights[i][j]);
-				deltaWeights[i][j] = learningRate * inputs[j] * (prevDelta[i] + momentumRate * deltaWeights[i][j]);
-			}
+			//Update weights
+			weights[i][j] += learningRate * inputs[j] * prevDelta[i] - momentumRate * deltaWeights[i][j];
+			deltaWeights[i][j] = learningRate * inputs[j] * prevDelta[i] - momentumRate * deltaWeights[i][j];
 		}
 	}
 	//Back propagate to previous layer
@@ -161,13 +159,7 @@ array<double>^ FCLayer::predict(array<double>^ inputs)
 	{
 		this->inputs[i] = inputs[i];
 	}
-	//Calculate outputs
-	return calculateOutputs();
-}
 
-//Calculate the outputs of the neurons
-array<double>^ FCLayer::calculateOutputs()
-{
 	outputs = gcnew array<double>(numNeurons);
 	for (int i = 0; i < numNeurons; i++)
 	{
@@ -177,14 +169,15 @@ array<double>^ FCLayer::calculateOutputs()
 			outputs[i] += inputs[j] * weights[i][j];
 		}
 		outputs[i] -= bias[i];
-		outputs[i] = sigmoid(outputs[i]);
+		outputs[i] = Math::Tanh(outputs[i]);
+		//outputs[i] = sigmoid(outputs[i]);
 	}
 
 	//Feed forward to next layer if there is one
 	if (nextLayer != nullptr)
-		{
-			return nextLayer->predict(outputs);
-		}
+	{
+		return nextLayer->predict(outputs);
+	}
 	else //If there is no next layer, return the outputs
 	{
 		return outputs;

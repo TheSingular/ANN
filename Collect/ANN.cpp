@@ -112,10 +112,20 @@ void ANN::initializeFirstLayer(int numClass)
 //Reset everything, remove all layers
 void ANN::clearall()
 {
+	FCLayer^ iterator = inputLayer;
+	while (iterator != nullptr)
+	{
+		FCLayer^ temp = iterator;
+		iterator = iterator->NextLayer;
+		temp->NextLayer = nullptr;
+		temp->PrevLayer = nullptr;
+	}
+
+
 	initialized = false;
 	batchSize = 1;
 	error = 1;
-	threshold = 0.1;
+	threshold = 0.001;
 	learningRate = 0.1;
 	momentumRate = 0.9;
 	epochs = 0;
@@ -163,8 +173,10 @@ void ANN::Train()
 
 
 	epochs = 0;
+	error = 1;
 	errorLog = gcnew array<double>(maxEpochs);
 	int batchCounter = 0;
+	array<double>^ firstDelta = gcnew array<double>(outputLayer->NumNeurons);
 
 	//Epoch loop (train until max epochs or error is below threshold)
 	for (int i = 0; i < maxEpochs && error > threshold; i++)
@@ -177,7 +189,6 @@ void ANN::Train()
 			double singleError = 0;
 			array<double>^ output = inputLayer->predict(input[j]);
 			batchCounter++;
-			array<double>^ firstDelta = gcnew array<double>(outputLayer->NumNeurons);
 
 			//Calculate error
 			if (output->Length == 1)
@@ -210,7 +221,6 @@ void ANN::Train()
 		//Increase epoch counter
 		epochs++;
 	}
-	error = 1;
 	Array::Resize(errorLog, epochs);
 }
 

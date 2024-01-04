@@ -76,12 +76,7 @@ namespace CppCLRWinformsProjekt {
 			//Reset weights and biases if structure changed
 			if (changed)
 			{
-				FCLayer^ iterator = ann->InputLayer;
-				while (iterator != nullptr)
-				{
-					iterator->initializeNeurons();
-					iterator = iterator->NextLayer;
-				}
+				ann->InputLayer->initializeNeurons();
 			}
 		}
 
@@ -196,17 +191,19 @@ namespace CppCLRWinformsProjekt {
 			   this->label1->AutoSize = true;
 			   this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(0)));
-			   this->label1->Location = System::Drawing::Point(57, 31);
+			   this->label1->Location = System::Drawing::Point(86, 48);
+			   this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->label1->Name = L"label1";
-			   this->label1->Size = System::Drawing::Size(232, 31);
+			   this->label1->Size = System::Drawing::Size(343, 47);
 			   this->label1->TabIndex = 0;
 			   this->label1->Text = L"Safe Parameters";
 			   // 
 			   // label2
 			   // 
-			   this->label2->Location = System::Drawing::Point(20, 72);
+			   this->label2->Location = System::Drawing::Point(30, 111);
+			   this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->label2->Name = L"label2";
-			   this->label2->Size = System::Drawing::Size(332, 29);
+			   this->label2->Size = System::Drawing::Size(498, 45);
 			   this->label2->TabIndex = 1;
 			   this->label2->Text = L"Editing the parameters below will not require network reconstruction.";
 			   this->label2->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
@@ -214,64 +211,71 @@ namespace CppCLRWinformsProjekt {
 			   // label3
 			   // 
 			   this->label3->AutoSize = true;
-			   this->label3->Location = System::Drawing::Point(20, 124);
+			   this->label3->Location = System::Drawing::Point(30, 191);
+			   this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->label3->Name = L"label3";
-			   this->label3->Size = System::Drawing::Size(66, 13);
+			   this->label3->Size = System::Drawing::Size(96, 20);
 			   this->label3->TabIndex = 2;
 			   this->label3->Text = L"Max Epochs";
 			   // 
 			   // label4
 			   // 
 			   this->label4->AutoSize = true;
-			   this->label4->Location = System::Drawing::Point(23, 206);
+			   this->label4->Location = System::Drawing::Point(34, 317);
+			   this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->label4->Name = L"label4";
-			   this->label4->Size = System::Drawing::Size(79, 13);
+			   this->label4->Size = System::Drawing::Size(118, 20);
 			   this->label4->TabIndex = 3;
 			   this->label4->Text = L"Error Threshold";
 			   // 
 			   // label5
 			   // 
 			   this->label5->AutoSize = true;
-			   this->label5->Location = System::Drawing::Point(20, 167);
+			   this->label5->Location = System::Drawing::Point(30, 257);
+			   this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->label5->Name = L"label5";
-			   this->label5->Size = System::Drawing::Size(58, 13);
+			   this->label5->Size = System::Drawing::Size(86, 20);
 			   this->label5->TabIndex = 3;
 			   this->label5->Text = L"Batch Size";
 			   // 
 			   // label6
 			   // 
 			   this->label6->AutoSize = true;
-			   this->label6->Location = System::Drawing::Point(20, 248);
+			   this->label6->Location = System::Drawing::Point(30, 382);
+			   this->label6->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->label6->Name = L"label6";
-			   this->label6->Size = System::Drawing::Size(74, 13);
+			   this->label6->Size = System::Drawing::Size(110, 20);
 			   this->label6->TabIndex = 3;
 			   this->label6->Text = L"Learning Rate";
 			   // 
 			   // label7
 			   // 
 			   this->label7->AutoSize = true;
-			   this->label7->Location = System::Drawing::Point(20, 290);
+			   this->label7->Location = System::Drawing::Point(30, 446);
+			   this->label7->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->label7->Name = L"label7";
-			   this->label7->Size = System::Drawing::Size(82, 13);
+			   this->label7->Size = System::Drawing::Size(124, 20);
 			   this->label7->TabIndex = 3;
 			   this->label7->Text = L"MomentumRate";
 			   // 
 			   // MaxEpochsInput
 			   // 
-			   this->MaxEpochsInput->Location = System::Drawing::Point(23, 144);
+			   this->MaxEpochsInput->Location = System::Drawing::Point(34, 222);
+			   this->MaxEpochsInput->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->MaxEpochsInput->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000000000, 0, 0, 0 });
 			   this->MaxEpochsInput->Name = L"MaxEpochsInput";
-			   this->MaxEpochsInput->Size = System::Drawing::Size(120, 20);
+			   this->MaxEpochsInput->Size = System::Drawing::Size(180, 26);
 			   this->MaxEpochsInput->TabIndex = 4;
 			   this->MaxEpochsInput->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
 			   this->MaxEpochsInput->ValueChanged += gcnew System::EventHandler(this, &ANNSetup::MaxEpochsInput_ValueChanged);
 			   // 
 			   // BatchSizeInput
 			   // 
-			   this->BatchSizeInput->Location = System::Drawing::Point(23, 183);
+			   this->BatchSizeInput->Location = System::Drawing::Point(34, 282);
+			   this->BatchSizeInput->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->BatchSizeInput->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000000000, 0, 0, 0 });
 			   this->BatchSizeInput->Name = L"BatchSizeInput";
-			   this->BatchSizeInput->Size = System::Drawing::Size(120, 20);
+			   this->BatchSizeInput->Size = System::Drawing::Size(180, 26);
 			   this->BatchSizeInput->TabIndex = 6;
 			   this->BatchSizeInput->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			   this->BatchSizeInput->ValueChanged += gcnew System::EventHandler(this, &ANNSetup::BatchSizeInput_ValueChanged);
@@ -280,11 +284,12 @@ namespace CppCLRWinformsProjekt {
 			   // 
 			   this->MomentumRateInput->DecimalPlaces = 5;
 			   this->MomentumRateInput->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 131072 });
-			   this->MomentumRateInput->Location = System::Drawing::Point(23, 306);
+			   this->MomentumRateInput->Location = System::Drawing::Point(34, 471);
+			   this->MomentumRateInput->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->MomentumRateInput->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
 			   this->MomentumRateInput->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, System::Int32::MinValue });
 			   this->MomentumRateInput->Name = L"MomentumRateInput";
-			   this->MomentumRateInput->Size = System::Drawing::Size(120, 20);
+			   this->MomentumRateInput->Size = System::Drawing::Size(180, 26);
 			   this->MomentumRateInput->TabIndex = 8;
 			   this->MomentumRateInput->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 9, 0, 0, 65536 });
 			   this->MomentumRateInput->ValueChanged += gcnew System::EventHandler(this, &ANNSetup::MomentumRateInput_ValueChanged);
@@ -293,11 +298,12 @@ namespace CppCLRWinformsProjekt {
 			   // 
 			   this->LearningRateInput->DecimalPlaces = 5;
 			   this->LearningRateInput->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 131072 });
-			   this->LearningRateInput->Location = System::Drawing::Point(23, 267);
+			   this->LearningRateInput->Location = System::Drawing::Point(34, 411);
+			   this->LearningRateInput->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->LearningRateInput->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, 0 });
 			   this->LearningRateInput->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000, 0, 0, System::Int32::MinValue });
 			   this->LearningRateInput->Name = L"LearningRateInput";
-			   this->LearningRateInput->Size = System::Drawing::Size(120, 20);
+			   this->LearningRateInput->Size = System::Drawing::Size(180, 26);
 			   this->LearningRateInput->TabIndex = 9;
 			   this->LearningRateInput->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 65536 });
 			   this->LearningRateInput->ValueChanged += gcnew System::EventHandler(this, &ANNSetup::LearningRateInput_ValueChanged);
@@ -305,40 +311,44 @@ namespace CppCLRWinformsProjekt {
 			   // ThresholdInput
 			   // 
 			   this->ThresholdInput->DecimalPlaces = 5;
-			   this->ThresholdInput->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 131072 });
-			   this->ThresholdInput->Location = System::Drawing::Point(23, 225);
+			   this->ThresholdInput->Increment = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 262144 });
+			   this->ThresholdInput->Location = System::Drawing::Point(34, 346);
+			   this->ThresholdInput->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->ThresholdInput->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			   this->ThresholdInput->Name = L"ThresholdInput";
-			   this->ThresholdInput->Size = System::Drawing::Size(120, 20);
+			   this->ThresholdInput->Size = System::Drawing::Size(180, 26);
 			   this->ThresholdInput->TabIndex = 10;
-			   this->ThresholdInput->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 65536 });
+			   this->ThresholdInput->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 196608 });
 			   this->ThresholdInput->ValueChanged += gcnew System::EventHandler(this, &ANNSetup::ThresholdInput_ValueChanged);
 			   // 
 			   // addLayerNumNeuronsBox
 			   // 
-			   this->addLayerNumNeuronsBox->Location = System::Drawing::Point(686, 225);
+			   this->addLayerNumNeuronsBox->Location = System::Drawing::Point(1029, 346);
+			   this->addLayerNumNeuronsBox->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->addLayerNumNeuronsBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000000000, 0, 0, 0 });
 			   this->addLayerNumNeuronsBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			   this->addLayerNumNeuronsBox->Name = L"addLayerNumNeuronsBox";
-			   this->addLayerNumNeuronsBox->Size = System::Drawing::Size(120, 20);
+			   this->addLayerNumNeuronsBox->Size = System::Drawing::Size(180, 26);
 			   this->addLayerNumNeuronsBox->TabIndex = 11;
 			   this->addLayerNumNeuronsBox->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10, 0, 0, 0 });
 			   // 
 			   // setNumClassBox
 			   // 
-			   this->setNumClassBox->Location = System::Drawing::Point(686, 455);
+			   this->setNumClassBox->Location = System::Drawing::Point(1029, 700);
+			   this->setNumClassBox->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->setNumClassBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000000000, 0, 0, 0 });
 			   this->setNumClassBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2, 0, 0, 0 });
 			   this->setNumClassBox->Name = L"setNumClassBox";
-			   this->setNumClassBox->Size = System::Drawing::Size(120, 20);
+			   this->setNumClassBox->Size = System::Drawing::Size(180, 26);
 			   this->setNumClassBox->TabIndex = 11;
 			   this->setNumClassBox->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2, 0, 0, 0 });
 			   // 
 			   // addLayer
 			   // 
-			   this->addLayer->Location = System::Drawing::Point(847, 225);
+			   this->addLayer->Location = System::Drawing::Point(1270, 346);
+			   this->addLayer->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->addLayer->Name = L"addLayer";
-			   this->addLayer->Size = System::Drawing::Size(190, 20);
+			   this->addLayer->Size = System::Drawing::Size(285, 31);
 			   this->addLayer->TabIndex = 12;
 			   this->addLayer->Text = L"Add layer before first layer";
 			   this->addLayer->UseVisualStyleBackColor = true;
@@ -346,9 +356,10 @@ namespace CppCLRWinformsProjekt {
 			   // 
 			   // removeFirstLayer
 			   // 
-			   this->removeFirstLayer->Location = System::Drawing::Point(459, 225);
+			   this->removeFirstLayer->Location = System::Drawing::Point(688, 346);
+			   this->removeFirstLayer->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->removeFirstLayer->Name = L"removeFirstLayer";
-			   this->removeFirstLayer->Size = System::Drawing::Size(190, 20);
+			   this->removeFirstLayer->Size = System::Drawing::Size(285, 31);
 			   this->removeFirstLayer->TabIndex = 12;
 			   this->removeFirstLayer->Text = L"Remove first layer";
 			   this->removeFirstLayer->UseVisualStyleBackColor = true;
@@ -356,9 +367,10 @@ namespace CppCLRWinformsProjekt {
 			   // 
 			   // setNumClass
 			   // 
-			   this->setNumClass->Location = System::Drawing::Point(847, 455);
+			   this->setNumClass->Location = System::Drawing::Point(1270, 700);
+			   this->setNumClass->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->setNumClass->Name = L"setNumClass";
-			   this->setNumClass->Size = System::Drawing::Size(190, 20);
+			   this->setNumClass->Size = System::Drawing::Size(285, 31);
 			   this->setNumClass->TabIndex = 12;
 			   this->setNumClass->Text = L"Change number of classes";
 			   this->setNumClass->UseVisualStyleBackColor = true;
@@ -369,17 +381,19 @@ namespace CppCLRWinformsProjekt {
 			   this->label8->AutoSize = true;
 			   this->label8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(0)));
-			   this->label8->Location = System::Drawing::Point(608, 31);
+			   this->label8->Location = System::Drawing::Point(912, 48);
+			   this->label8->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->label8->Name = L"label8";
-			   this->label8->Size = System::Drawing::Size(281, 31);
+			   this->label8->Size = System::Drawing::Size(414, 47);
 			   this->label8->TabIndex = 0;
 			   this->label8->Text = L"Unsafe Construction";
 			   // 
 			   // label9
 			   // 
-			   this->label9->Location = System::Drawing::Point(574, 72);
+			   this->label9->Location = System::Drawing::Point(861, 111);
+			   this->label9->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->label9->Name = L"label9";
-			   this->label9->Size = System::Drawing::Size(364, 45);
+			   this->label9->Size = System::Drawing::Size(546, 69);
 			   this->label9->TabIndex = 1;
 			   this->label9->Text = L"Warning: Editing the layers below below will require network reconstruction. All "
 				   L"previous training will be discarded and the weights will be reinitialized";
@@ -387,19 +401,21 @@ namespace CppCLRWinformsProjekt {
 			   // 
 			   // editLayerNumNeuronsBox
 			   // 
-			   this->editLayerNumNeuronsBox->Location = System::Drawing::Point(686, 335);
+			   this->editLayerNumNeuronsBox->Location = System::Drawing::Point(1029, 515);
+			   this->editLayerNumNeuronsBox->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->editLayerNumNeuronsBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000000000, 0, 0, 0 });
 			   this->editLayerNumNeuronsBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			   this->editLayerNumNeuronsBox->Name = L"editLayerNumNeuronsBox";
-			   this->editLayerNumNeuronsBox->Size = System::Drawing::Size(120, 20);
+			   this->editLayerNumNeuronsBox->Size = System::Drawing::Size(180, 26);
 			   this->editLayerNumNeuronsBox->TabIndex = 11;
 			   this->editLayerNumNeuronsBox->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 10, 0, 0, 0 });
 			   // 
 			   // editLayer
 			   // 
-			   this->editLayer->Location = System::Drawing::Point(847, 335);
+			   this->editLayer->Location = System::Drawing::Point(1270, 515);
+			   this->editLayer->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->editLayer->Name = L"editLayer";
-			   this->editLayer->Size = System::Drawing::Size(190, 20);
+			   this->editLayer->Size = System::Drawing::Size(285, 31);
 			   this->editLayer->TabIndex = 12;
 			   this->editLayer->Text = L"Edit number of neurons for first layer";
 			   this->editLayer->UseVisualStyleBackColor = true;
@@ -407,9 +423,10 @@ namespace CppCLRWinformsProjekt {
 			   // 
 			   // initializeFirstLayer
 			   // 
-			   this->initializeFirstLayer->Location = System::Drawing::Point(459, 455);
+			   this->initializeFirstLayer->Location = System::Drawing::Point(688, 700);
+			   this->initializeFirstLayer->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->initializeFirstLayer->Name = L"initializeFirstLayer";
-			   this->initializeFirstLayer->Size = System::Drawing::Size(190, 20);
+			   this->initializeFirstLayer->Size = System::Drawing::Size(285, 31);
 			   this->initializeFirstLayer->TabIndex = 12;
 			   this->initializeFirstLayer->Text = L"Initialize network";
 			   this->initializeFirstLayer->UseVisualStyleBackColor = true;
@@ -417,9 +434,10 @@ namespace CppCLRWinformsProjekt {
 			   // 
 			   // resetNetwork
 			   // 
-			   this->resetNetwork->Location = System::Drawing::Point(459, 333);
+			   this->resetNetwork->Location = System::Drawing::Point(688, 512);
+			   this->resetNetwork->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->resetNetwork->Name = L"resetNetwork";
-			   this->resetNetwork->Size = System::Drawing::Size(190, 20);
+			   this->resetNetwork->Size = System::Drawing::Size(285, 31);
 			   this->resetNetwork->TabIndex = 12;
 			   this->resetNetwork->Text = L"Reset the network";
 			   this->resetNetwork->UseVisualStyleBackColor = true;
@@ -428,35 +446,38 @@ namespace CppCLRWinformsProjekt {
 			   // label10
 			   // 
 			   this->label10->AutoSize = true;
-			   this->label10->Location = System::Drawing::Point(686, 205);
+			   this->label10->Location = System::Drawing::Point(1029, 315);
+			   this->label10->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->label10->Name = L"label10";
-			   this->label10->Size = System::Drawing::Size(99, 13);
+			   this->label10->Size = System::Drawing::Size(147, 20);
 			   this->label10->TabIndex = 13;
 			   this->label10->Text = L"Number of Neurons";
 			   // 
 			   // label11
 			   // 
 			   this->label11->AutoSize = true;
-			   this->label11->Location = System::Drawing::Point(683, 319);
+			   this->label11->Location = System::Drawing::Point(1024, 491);
+			   this->label11->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->label11->Name = L"label11";
-			   this->label11->Size = System::Drawing::Size(99, 13);
+			   this->label11->Size = System::Drawing::Size(147, 20);
 			   this->label11->TabIndex = 13;
 			   this->label11->Text = L"Number of Neurons";
 			   // 
 			   // label12
 			   // 
 			   this->label12->AutoSize = true;
-			   this->label12->Location = System::Drawing::Point(686, 439);
+			   this->label12->Location = System::Drawing::Point(1029, 675);
+			   this->label12->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->label12->Name = L"label12";
-			   this->label12->Size = System::Drawing::Size(95, 13);
+			   this->label12->Size = System::Drawing::Size(143, 20);
 			   this->label12->TabIndex = 13;
 			   this->label12->Text = L"Number of Classes";
 			   // 
 			   // ANNSetup
 			   // 
-			   this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			   this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			   this->ClientSize = System::Drawing::Size(1283, 690);
+			   this->ClientSize = System::Drawing::Size(1924, 1062);
 			   this->Controls->Add(this->label12);
 			   this->Controls->Add(this->label11);
 			   this->Controls->Add(this->label10);
@@ -483,7 +504,6 @@ namespace CppCLRWinformsProjekt {
 			   this->Controls->Add(this->label2);
 			   this->Controls->Add(this->label8);
 			   this->Controls->Add(this->label1);
-			   this->Margin = System::Windows::Forms::Padding(2);
 			   this->Name = L"ANNSetup";
 			   this->Text = L"ANNSetup - Batuhan ÇİMŞİT - 432923";
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->MaxEpochsInput))->EndInit();

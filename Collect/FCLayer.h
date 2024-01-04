@@ -78,7 +78,6 @@ public:
 
 	//Methods
 	array<double>^ predict(array<double>^ inputs);
-	array<double>^ calculateOutputs();
 	void updateWeights(array<double>^ nextDelta, double learningRate, double momentumRate);
 	void initializeNeurons();
 	void resetMomentums();

@@ -1,8 +1,4 @@
 ﻿#pragma once
-#include "Process.h"
-#include <iostream>
-#include <fstream>
-#include <string>
 #include "ANN.h"
 #include "FCLayer.h"
 #include "ANNSetup.h"
@@ -15,7 +11,6 @@ namespace CppCLRWinformsProjekt {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-	using namespace System::IO;
 
 	/// <summary>
 	/// Zusammenfassung für Form1
@@ -42,21 +37,9 @@ namespace CppCLRWinformsProjekt {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::PictureBox^ pictureBox1;
-	protected:
-	private: System::Windows::Forms::GroupBox^ groupBox1;
-	private: System::Windows::Forms::Button^ Set_Net;
-
-	private: System::Windows::Forms::Label^ label1;
-
-
-	private: System::Windows::Forms::GroupBox^ groupBox2;
-	private: System::Windows::Forms::Label^ label2;
-
-
-
 
 	private:
+		System::ComponentModel::Container^ components;
 		/// <summary>
 		/// User Defined Variables
 		/// </summary>
@@ -65,25 +48,30 @@ namespace CppCLRWinformsProjekt {
 		//float* Samples, * targets, * Weights, * bias;
 		ANN^ ann = gcnew ANN();
 
+	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::GroupBox^ groupBox1;
+	private: System::Windows::Forms::NumericUpDown^ numClasses;
+	private: System::Windows::Forms::Button^ Reset_Net;
+	private: System::Windows::Forms::Button^ Quick_Set_Net;
+	private: System::Windows::Forms::Button^ Set_Net;
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::GroupBox^ groupBox2;
+	private: System::Windows::Forms::NumericUpDown^ classNo;
+	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^ fileToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ readDataToolStripMenuItem;
-	private: System::Windows::Forms::OpenFileDialog^ openFileDialog1;
-	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::ToolStripMenuItem^ saveDataToolStripMenuItem;
-	private: System::Windows::Forms::SaveFileDialog^ saveFileDialog1;
 	private: System::Windows::Forms::ToolStripMenuItem^ processToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ trainingToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ testingToolStripMenuItem;
-	private: System::Windows::Forms::Button^ Reset_Net;
+	private: System::Windows::Forms::OpenFileDialog^ openFileDialog1;
+	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::ToolStripMenuItem^ trainingResetMomentumsToolStripMenuItem;
-	private: System::Windows::Forms::Button^ Quick_Set_Net;
-	private: System::Windows::Forms::NumericUpDown^ numClasses;
-	private: System::Windows::Forms::NumericUpDown^ classNo;
+	private: System::Windows::Forms::SaveFileDialog^ saveFileDialog1;
 
 
 
-		   System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		   /// <summary>
@@ -124,9 +112,10 @@ namespace CppCLRWinformsProjekt {
 			   // pictureBox1
 			   // 
 			   this->pictureBox1->BackColor = System::Drawing::SystemColors::ButtonHighlight;
-			   this->pictureBox1->Location = System::Drawing::Point(13, 35);
+			   this->pictureBox1->Location = System::Drawing::Point(20, 54);
+			   this->pictureBox1->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->pictureBox1->Name = L"pictureBox1";
-			   this->pictureBox1->Size = System::Drawing::Size(802, 578);
+			   this->pictureBox1->Size = System::Drawing::Size(1203, 889);
 			   this->pictureBox1->TabIndex = 0;
 			   this->pictureBox1->TabStop = false;
 			   this->pictureBox1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &Form1::pictureBox1_Paint);
@@ -141,28 +130,32 @@ namespace CppCLRWinformsProjekt {
 			   this->groupBox1->Controls->Add(this->label1);
 			   this->groupBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(162)));
-			   this->groupBox1->Location = System::Drawing::Point(869, 50);
+			   this->groupBox1->Location = System::Drawing::Point(1304, 77);
+			   this->groupBox1->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->groupBox1->Name = L"groupBox1";
-			   this->groupBox1->Size = System::Drawing::Size(349, 130);
+			   this->groupBox1->Padding = System::Windows::Forms::Padding(4, 5, 4, 5);
+			   this->groupBox1->Size = System::Drawing::Size(524, 200);
 			   this->groupBox1->TabIndex = 1;
 			   this->groupBox1->TabStop = false;
 			   this->groupBox1->Text = L"Network Architecture";
 			   // 
 			   // numClasses
 			   // 
-			   this->numClasses->Location = System::Drawing::Point(10, 21);
+			   this->numClasses->Location = System::Drawing::Point(15, 32);
+			   this->numClasses->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->numClasses->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000000000, 0, 0, 0 });
 			   this->numClasses->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2, 0, 0, 0 });
 			   this->numClasses->Name = L"numClasses";
-			   this->numClasses->Size = System::Drawing::Size(97, 20);
+			   this->numClasses->Size = System::Drawing::Size(146, 26);
 			   this->numClasses->TabIndex = 12;
 			   this->numClasses->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2, 0, 0, 0 });
 			   // 
 			   // Reset_Net
 			   // 
-			   this->Reset_Net->Location = System::Drawing::Point(226, 13);
+			   this->Reset_Net->Location = System::Drawing::Point(339, 20);
+			   this->Reset_Net->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->Reset_Net->Name = L"Reset_Net";
-			   this->Reset_Net->Size = System::Drawing::Size(116, 42);
+			   this->Reset_Net->Size = System::Drawing::Size(174, 65);
 			   this->Reset_Net->TabIndex = 3;
 			   this->Reset_Net->Text = L"Reset Network\r\n(Clear Everything)";
 			   this->Reset_Net->UseVisualStyleBackColor = true;
@@ -170,9 +163,10 @@ namespace CppCLRWinformsProjekt {
 			   // 
 			   // Quick_Set_Net
 			   // 
-			   this->Quick_Set_Net->Location = System::Drawing::Point(10, 61);
+			   this->Quick_Set_Net->Location = System::Drawing::Point(15, 94);
+			   this->Quick_Set_Net->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->Quick_Set_Net->Name = L"Quick_Set_Net";
-			   this->Quick_Set_Net->Size = System::Drawing::Size(156, 59);
+			   this->Quick_Set_Net->Size = System::Drawing::Size(234, 91);
 			   this->Quick_Set_Net->TabIndex = 2;
 			   this->Quick_Set_Net->Text = L"Quick single layer setup";
 			   this->Quick_Set_Net->UseVisualStyleBackColor = true;
@@ -180,9 +174,10 @@ namespace CppCLRWinformsProjekt {
 			   // 
 			   // Set_Net
 			   // 
-			   this->Set_Net->Location = System::Drawing::Point(226, 61);
+			   this->Set_Net->Location = System::Drawing::Point(339, 94);
+			   this->Set_Net->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->Set_Net->Name = L"Set_Net";
-			   this->Set_Net->Size = System::Drawing::Size(116, 59);
+			   this->Set_Net->Size = System::Drawing::Size(174, 91);
 			   this->Set_Net->TabIndex = 2;
 			   this->Set_Net->Text = L"Click here to setup the network";
 			   this->Set_Net->UseVisualStyleBackColor = true;
@@ -191,9 +186,10 @@ namespace CppCLRWinformsProjekt {
 			   // label1
 			   // 
 			   this->label1->AutoSize = true;
-			   this->label1->Location = System::Drawing::Point(108, 23);
+			   this->label1->Location = System::Drawing::Point(162, 35);
+			   this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->label1->Name = L"label1";
-			   this->label1->Size = System::Drawing::Size(111, 13);
+			   this->label1->Size = System::Drawing::Size(167, 20);
 			   this->label1->TabIndex = 1;
 			   this->label1->Text = L"Number of classes";
 			   // 
@@ -203,34 +199,39 @@ namespace CppCLRWinformsProjekt {
 			   this->groupBox2->Controls->Add(this->label2);
 			   this->groupBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				   static_cast<System::Byte>(162)));
-			   this->groupBox2->Location = System::Drawing::Point(879, 191);
+			   this->groupBox2->Location = System::Drawing::Point(1318, 294);
+			   this->groupBox2->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->groupBox2->Name = L"groupBox2";
-			   this->groupBox2->Size = System::Drawing::Size(210, 49);
+			   this->groupBox2->Padding = System::Windows::Forms::Padding(4, 5, 4, 5);
+			   this->groupBox2->Size = System::Drawing::Size(315, 75);
 			   this->groupBox2->TabIndex = 2;
 			   this->groupBox2->TabStop = false;
 			   this->groupBox2->Text = L"Data Collection";
 			   // 
 			   // classNo
 			   // 
-			   this->classNo->Location = System::Drawing::Point(6, 19);
+			   this->classNo->Location = System::Drawing::Point(9, 29);
+			   this->classNo->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->classNo->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1000000000, 0, 0, 0 });
 			   this->classNo->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			   this->classNo->Name = L"classNo";
-			   this->classNo->Size = System::Drawing::Size(86, 20);
+			   this->classNo->Size = System::Drawing::Size(129, 26);
 			   this->classNo->TabIndex = 13;
 			   this->classNo->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1, 0, 0, 0 });
 			   // 
 			   // label2
 			   // 
 			   this->label2->AutoSize = true;
-			   this->label2->Location = System::Drawing::Point(98, 23);
+			   this->label2->Location = System::Drawing::Point(147, 35);
+			   this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->label2->Name = L"label2";
-			   this->label2->Size = System::Drawing::Size(96, 13);
+			   this->label2->Size = System::Drawing::Size(143, 20);
 			   this->label2->TabIndex = 1;
 			   this->label2->Text = L"Label of sample";
 			   // 
 			   // menuStrip1
 			   // 
+			   this->menuStrip1->GripMargin = System::Windows::Forms::Padding(2, 2, 0, 2);
 			   this->menuStrip1->ImageScalingSize = System::Drawing::Size(24, 24);
 			   this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
 				   this->fileToolStripMenuItem,
@@ -238,8 +239,7 @@ namespace CppCLRWinformsProjekt {
 			   });
 			   this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			   this->menuStrip1->Name = L"menuStrip1";
-			   this->menuStrip1->Padding = System::Windows::Forms::Padding(4, 1, 0, 1);
-			   this->menuStrip1->Size = System::Drawing::Size(1283, 24);
+			   this->menuStrip1->Size = System::Drawing::Size(1859, 36);
 			   this->menuStrip1->TabIndex = 4;
 			   this->menuStrip1->Text = L"menuStrip1";
 			   // 
@@ -250,20 +250,20 @@ namespace CppCLRWinformsProjekt {
 					   this->saveDataToolStripMenuItem
 			   });
 			   this->fileToolStripMenuItem->Name = L"fileToolStripMenuItem";
-			   this->fileToolStripMenuItem->Size = System::Drawing::Size(37, 22);
+			   this->fileToolStripMenuItem->Size = System::Drawing::Size(54, 29);
 			   this->fileToolStripMenuItem->Text = L"File";
 			   // 
 			   // readDataToolStripMenuItem
 			   // 
 			   this->readDataToolStripMenuItem->Name = L"readDataToolStripMenuItem";
-			   this->readDataToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			   this->readDataToolStripMenuItem->Size = System::Drawing::Size(193, 34);
 			   this->readDataToolStripMenuItem->Text = L"Read data";
 			   this->readDataToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::readDataToolStripMenuItem_Click);
 			   // 
 			   // saveDataToolStripMenuItem
 			   // 
 			   this->saveDataToolStripMenuItem->Name = L"saveDataToolStripMenuItem";
-			   this->saveDataToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			   this->saveDataToolStripMenuItem->Size = System::Drawing::Size(193, 34);
 			   this->saveDataToolStripMenuItem->Text = L"Save data";
 			   this->saveDataToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::saveDataToolStripMenuItem_Click);
 			   // 
@@ -274,27 +274,27 @@ namespace CppCLRWinformsProjekt {
 					   this->trainingResetMomentumsToolStripMenuItem, this->testingToolStripMenuItem
 			   });
 			   this->processToolStripMenuItem->Name = L"processToolStripMenuItem";
-			   this->processToolStripMenuItem->Size = System::Drawing::Size(59, 22);
+			   this->processToolStripMenuItem->Size = System::Drawing::Size(88, 29);
 			   this->processToolStripMenuItem->Text = L"Process";
 			   // 
 			   // trainingToolStripMenuItem
 			   // 
 			   this->trainingToolStripMenuItem->Name = L"trainingToolStripMenuItem";
-			   this->trainingToolStripMenuItem->Size = System::Drawing::Size(227, 22);
+			   this->trainingToolStripMenuItem->Size = System::Drawing::Size(339, 34);
 			   this->trainingToolStripMenuItem->Text = L"Training";
 			   this->trainingToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::trainingToolStripMenuItem_Click);
 			   // 
 			   // trainingResetMomentumsToolStripMenuItem
 			   // 
 			   this->trainingResetMomentumsToolStripMenuItem->Name = L"trainingResetMomentumsToolStripMenuItem";
-			   this->trainingResetMomentumsToolStripMenuItem->Size = System::Drawing::Size(224, 22);
-			   this->trainingResetMomentumsToolStripMenuItem->Text = L"Training (reset momentums)";
+			   this->trainingResetMomentumsToolStripMenuItem->Size = System::Drawing::Size(339, 34);
+			   this->trainingResetMomentumsToolStripMenuItem->Text = L"Training (Reset momentums)";
 			   this->trainingResetMomentumsToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::trainingResetMomentumsToolStripMenuItem_Click);
 			   // 
 			   // testingToolStripMenuItem
 			   // 
 			   this->testingToolStripMenuItem->Name = L"testingToolStripMenuItem";
-			   this->testingToolStripMenuItem->Size = System::Drawing::Size(227, 22);
+			   this->testingToolStripMenuItem->Size = System::Drawing::Size(339, 34);
 			   this->testingToolStripMenuItem->Text = L"Testing";
 			   this->testingToolStripMenuItem->Click += gcnew System::EventHandler(this, &Form1::testingToolStripMenuItem_Click);
 			   // 
@@ -304,24 +304,27 @@ namespace CppCLRWinformsProjekt {
 			   // 
 			   // textBox1
 			   // 
-			   this->textBox1->Location = System::Drawing::Point(869, 291);
+			   this->textBox1->Location = System::Drawing::Point(1304, 448);
+			   this->textBox1->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->textBox1->Multiline = true;
 			   this->textBox1->Name = L"textBox1";
 			   this->textBox1->ScrollBars = System::Windows::Forms::ScrollBars::Both;
-			   this->textBox1->Size = System::Drawing::Size(247, 283);
+			   this->textBox1->Size = System::Drawing::Size(368, 433);
 			   this->textBox1->TabIndex = 5;
 			   // 
 			   // Form1
 			   // 
-			   this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			   this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
 			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			   this->ClientSize = System::Drawing::Size(1283, 633);
+			   this->AutoSize = true;
+			   this->ClientSize = System::Drawing::Size(1859, 953);
 			   this->Controls->Add(this->textBox1);
 			   this->Controls->Add(this->groupBox2);
 			   this->Controls->Add(this->groupBox1);
 			   this->Controls->Add(this->pictureBox1);
 			   this->Controls->Add(this->menuStrip1);
 			   this->MainMenuStrip = this->menuStrip1;
+			   this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			   this->Name = L"Form1";
 			   this->Text = L"ANN - Batuhan ÇİMŞİT - 432923";
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
@@ -428,7 +431,7 @@ namespace CppCLRWinformsProjekt {
 			// Veri Kümesini okunacak 
 
 			for (int i = 0; i < ann->RawInput->Length; i++) {
-				draw_sample(ann->RawInput[i][0] + *width, *height - ann->RawInput[i][1], ann->Target[i]);
+				draw_sample((int)ann->RawInput[i][0] + *width, *height - (int)ann->RawInput[i][1], ann->Target[i]);
 			}
 			//draw_sample(temp_x, temp_y, label);
 			MessageBox::Show(L"File read successfully");
@@ -524,10 +527,10 @@ namespace CppCLRWinformsProjekt {
 				textBox1->Text += L"Epochs: " + System::Convert::ToString(ann->Epochs) + L"\r\n";
 				textBox1->Text += L"Final Error: " + System::Convert::ToString(ann->ErrorLog[ann->ErrorLog->Length - 1]) + L"\r\n";
 				textBox1->Text += L"\r\n" + L"Error Log:" + L"\r\n";
-				for (int i = 0; i < ann->ErrorLog->Length; i++)
-				{
-					textBox1->Text += L"Epoch " + System::Convert::ToString(i + 1) + L" Error: " + System::Convert::ToString(ann->ErrorLog[i]) + L"\r\n";
-				}
+				//for (int i = 0; i < ann->ErrorLog->Length; i++)
+				//{
+				//	textBox1->Text += L"Epoch " + System::Convert::ToString(i + 1) + L" Error: " + System::Convert::ToString(ann->ErrorLog[i]) + L"\r\n";
+				//}
 			}
 			catch (Exception^ ex) {
 				MessageBox::Show(ex->Message);
@@ -547,30 +550,6 @@ namespace CppCLRWinformsProjekt {
 
 
 	}
-	private: System::Void trainingResetMomentumsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-		if (!ann->Initialized)
-			MessageBox::Show(L"Setup the network architecture first!");
-		else
-		{
-			try {
-				MessageBox::Show(L"Training is about to start.");
-				ann->InputLayer->resetMomentums();
-				ann->Train();
-				MessageBox::Show(L"Training is completed");
-				textBox1->Text = L"";
-				textBox1->Text += L"Epochs: " + System::Convert::ToString(ann->Epochs) + L"\r\n";
-				textBox1->Text += L"Final Error: " + System::Convert::ToString(ann->ErrorLog[ann->ErrorLog->Length - 1]) + L"\r\n";
-				textBox1->Text += L"\r\n" + L"Error Log:" + L"\r\n";
-				for (int i = 0; i < ann->ErrorLog->Length; i++)
-				{
-					textBox1->Text += L"Epoch " + System::Convert::ToString(i + 1) + L" Error: " + System::Convert::ToString(ann->ErrorLog[i]) + L"\r\n";
-				}
-			}
-			catch (Exception^ ex) {
-				MessageBox::Show(ex->Message);
-			}
-		}
-	}
 	private: System::Void Quick_Set_Net_Click(System::Object^ sender, System::EventArgs^ e) {
 		// Network is constructed
 		try {
@@ -588,6 +567,30 @@ namespace CppCLRWinformsProjekt {
 		}
 		catch (Exception^ ex) {
 			MessageBox::Show(ex->Message);
+		}
+	}
+	private: System::Void trainingResetMomentumsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (!ann->Initialized)
+			MessageBox::Show(L"Setup the network architecture first!");
+		else
+		{
+			try {
+				MessageBox::Show(L"Training is about to start.");
+				ann->InputLayer->resetMomentums();
+				ann->Train();
+				MessageBox::Show(L"Training is completed");
+				textBox1->Text = L"";
+				textBox1->Text += L"Epochs: " + System::Convert::ToString(ann->Epochs) + L"\r\n";
+				textBox1->Text += L"Final Error: " + System::Convert::ToString(ann->ErrorLog[ann->ErrorLog->Length - 1]) + L"\r\n";
+				textBox1->Text += L"\r\n" + L"Error Log:" + L"\r\n";
+				/*for (int i = 0; i < ann->ErrorLog->Length; i++)
+				{
+					textBox1->Text += L"Epoch " + System::Convert::ToString(i + 1) + L" Error: " + System::Convert::ToString(ann->ErrorLog[i]) + L"\r\n";
+				}*/
+			}
+			catch (Exception^ ex) {
+				MessageBox::Show(ex->Message);
+			}
 		}
 	}
 	};

@@ -149,7 +149,7 @@ private:
 	array<double>^ errorLog = gcnew array<double>(maxEpochs);
 	int batchSize = 1;
 	double error = 1;
-	double threshold = 0.1;
+	double threshold = 0.001;
 	double learningRate = 0.1;
 	double momentumRate = 0.9;
 	array<double>^ mean = gcnew array<double>(2);
