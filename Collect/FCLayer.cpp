@@ -104,8 +104,8 @@ void FCLayer::updateWeights(array<double>^ nextDelta, double learningRate, doubl
 		for (int i = 0; i < numNeurons; i++)
 		{
 			//Calculate delta
-			//prevDelta[i] = tanhDerivative(outputs[i]) * nextDelta[i];
-			prevDelta[i] = sigmoidDerivative(outputs[i]) * nextDelta[i];
+			prevDelta[i] = tanhDerivative(outputs[i]) * nextDelta[i];
+			//prevDelta[i] = sigmoidDerivative(outputs[i]) * nextDelta[i];
 		}
 	}
 	//If there is a next layer, nextDelta is calculated from the next layer's delta
@@ -123,8 +123,8 @@ void FCLayer::updateWeights(array<double>^ nextDelta, double learningRate, doubl
 				prevDelta[j] += nextDelta[k] * nextLayer->weights[k][j];
 			}
 			//Finalize delta
-			//prevDelta[j] *= tanhDerivative(outputs[j]);
-			prevDelta[j] *= sigmoidDerivative(outputs[j]);
+			prevDelta[j] *= tanhDerivative(outputs[j]);
+			//prevDelta[j] *= sigmoidDerivative(outputs[j]);
 		}
 	}
 
@@ -169,8 +169,8 @@ array<double>^ FCLayer::predict(array<double>^ inputs)
 			outputs[i] += inputs[j] * weights[i][j];
 		}
 		outputs[i] -= bias[i];
-		//outputs[i] = Math::Tanh(outputs[i]);
-		outputs[i] = sigmoid(outputs[i]);
+		outputs[i] = Math::Tanh(outputs[i]);
+		//outputs[i] = sigmoid(outputs[i]);
 	}
 
 	//Feed forward to next layer if there is one
