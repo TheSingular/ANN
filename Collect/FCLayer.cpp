@@ -133,14 +133,14 @@ void FCLayer::updateWeights(array<double>^ nextDelta, double learningRate, doubl
 	{
 
 		//Update bias and weights
-		bias[i] += learningRate * -1 * prevDelta[i] - momentumRate * deltaBias[i];
-		deltaBias[i] = learningRate * -1 * prevDelta[i] - momentumRate * deltaBias[i];
+		deltaBias[i] = (1 - momentumRate) * -1 * prevDelta[i] + momentumRate * deltaBias[i];
+		bias[i] += learningRate * deltaBias[i];
 		//For each input
 		for (int j = 0; j < numInputDim; j++)
 		{
 			//Update weights
-			weights[i][j] += learningRate * inputs[j] * prevDelta[i] - momentumRate * deltaWeights[i][j];
-			deltaWeights[i][j] = learningRate * inputs[j] * prevDelta[i] - momentumRate * deltaWeights[i][j];
+			deltaWeights[i][j] = (1 - momentumRate) * inputs[j] * prevDelta[i] + momentumRate * deltaWeights[i][j];
+			weights[i][j] += learningRate * deltaWeights[i][j];
 		}
 	}
 	//Back propagate to previous layer
