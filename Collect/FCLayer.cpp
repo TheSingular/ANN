@@ -11,9 +11,38 @@ double inline sigmoidDerivative(double x)
 	return  0.5 * (1 - x * x);
 
 }
+double inline tanh(double x)
+{
+	return Math::Tanh(x);
+}
 double inline tanhDerivative(double x)
 {
 	return  1 - x * x;
+}
+double inline relu(double x)
+{
+	return Math::Max(0.0, x);
+}
+double inline reluDerivative(double x)
+{
+	if (x > 0)
+		return 1;
+	else
+		return 0;
+}
+double inline leakyRelu(double x)
+{
+	if (x > 0)
+		return x;
+	else
+		return 0.01 * x;
+}
+double inline leakyReluDerivative(double x)
+{
+	if (x > 0)
+		return 1;
+	else
+		return 0.01;
 }
 
 FCLayer::FCLayer(int numNeurons, FCLayer^ prevLayer, FCLayer^ nextLayer)
@@ -104,6 +133,8 @@ void FCLayer::updateWeights(array<double>^ nextDelta, double learningRate, doubl
 		for (int i = 0; i < numNeurons; i++)
 		{
 			//Calculate delta
+			//prevDelta[i] = reluDerivative(outputs[i]) * nextDelta[i];
+			//prevDelta[i] = leakyReluDerivative(outputs[i]) * nextDelta[i];
 			prevDelta[i] = tanhDerivative(outputs[i]) * nextDelta[i];
 			//prevDelta[i] = sigmoidDerivative(outputs[i]) * nextDelta[i];
 		}
@@ -123,6 +154,8 @@ void FCLayer::updateWeights(array<double>^ nextDelta, double learningRate, doubl
 				prevDelta[j] += nextDelta[k] * nextLayer->weights[k][j];
 			}
 			//Finalize delta
+			//prevDelta[j] *= reluDerivative(outputs[j]);
+			//prevDelta[j] *= leakyReluDerivative(outputs[j]);
 			prevDelta[j] *= tanhDerivative(outputs[j]);
 			//prevDelta[j] *= sigmoidDerivative(outputs[j]);
 		}
@@ -169,7 +202,9 @@ array<double>^ FCLayer::predict(array<double>^ inputs)
 			outputs[i] += inputs[j] * weights[i][j];
 		}
 		outputs[i] -= bias[i];
-		outputs[i] = Math::Tanh(outputs[i]);
+		//outputs[i] = relu(outputs[i]);
+		//outputs[i] = leakyRelu(outputs[i]);
+		outputs[i] = tanh(outputs[i]);
 		//outputs[i] = sigmoid(outputs[i]);
 	}
 
