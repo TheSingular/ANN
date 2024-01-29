@@ -202,9 +202,24 @@ array<double>^ FCLayer::predict(array<double>^ inputs)
 			outputs[i] += inputs[j] * weights[i][j];
 		}
 		outputs[i] -= bias[i];
+
+		if (nextLayer != nullptr)
+		{
+			//outputs[i] = relu(outputs[i]);
+			//outputs[i] = leakyRelu(outputs[i]);
+			outputs[i] = tanh(outputs[i]);
+			//outputs[i] = sigmoid(outputs[i]);
+		}
+		else //If there is no next layer, return the outputs
+		{
+			//outputs[i] = relu(outputs[i]);
+			//outputs[i] = leakyRelu(outputs[i]);
+			outputs[i] = tanh(outputs[i]);
+			//outputs[i] = sigmoid(outputs[i]);
+		}
 		//outputs[i] = relu(outputs[i]);
 		//outputs[i] = leakyRelu(outputs[i]);
-		outputs[i] = tanh(outputs[i]);
+		//outputs[i] = tanh(outputs[i]);
 		//outputs[i] = sigmoid(outputs[i]);
 	}
 
